@@ -130,7 +130,21 @@ nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 def caricaDatiMacchinette(fn):
     # return datiMacchinette # se non riuscite ad implementare la funzione, potete usare temporaneamente qs dati
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    datalist = []
+    file = open(fn, 'r')
+    file.readline()
+    for item in file:
+        item = item.strip('\n').strip('\r')
+        content = item.split(';')
+        id_cliente = int(content[0])
+        i = 1
+        while i < len(content):
+            prodotto_operazione = int(content[i])
+            importo = int(content[i+1])
+            i += 2
+            datalist.append((id_cliente, prodotto_operazione, importo))
+
+    return datalist
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
@@ -205,7 +219,7 @@ print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 
 print('1) Eseguo la funzione caricaDatiMacchinette: ')
-fnv = './macchinette.csv'
+fnv = 'Esame-uni/Documents/Esame uni/2019_09_19/macchinette.csv'
 dv = caricaDatiMacchinette(fnv)
 print(dv)
 
