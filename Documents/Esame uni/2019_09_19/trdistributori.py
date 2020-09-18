@@ -97,8 +97,8 @@ datiMacchinette = [(1, 0, 400), (1, 29, 65), (3, 0, 200), (3, 16, 165), (3, 0, 3
 # INIZIO DELLA PARTE DA EDITARE
 ##########################################################
 
-cognome = 'Sostituiscimi con il cognome'  # inserisci qua il tuo cognome
-nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
+cognome = 'Liu'  # inserisci qua il tuo cognome
+nome = 'WeiHao'  # inserisci qua il tuo nome
 
 
 # - La funzione seguente accetta come parametro in ingresso
@@ -154,7 +154,12 @@ def caricaDatiMacchinette(fn):
 #   compreso tra "1 euro e 50 centesimi" e "2 euro" (estremi esclusi).
 def incassoTotale(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    incasso = 0
+    for i in ds:
+        temp = i[2]
+        if temp in range(151, 200):
+            incasso += temp
+    return incasso
 
 
 # - La funzione seguente accetta come parametro in ingresso la struttura dati
@@ -176,7 +181,15 @@ def incassoTotale(ds):
 #   pari a 0 prima del primo utilizzo.
 def saldoResiduo(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    temp = {}
+    for (id_cliente, prodotto, importo) in ds:
+        if id_cliente not in temp:
+            temp[id_cliente] = 0
+        if prodotto == 0:
+            temp[id_cliente] += importo
+        else:
+            temp[id_cliente] -= importo
+    return temp
 
 
 # - La funzione seguente accetta come parametro in ingresso la struttura dati
@@ -205,7 +218,24 @@ def saldoResiduo(ds):
 #     * il valore -1 come num_acquisti
 def prodottoPiuVenduto(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    temp = {}
+    for (id_cliente, prodotto, importo) in ds:
+        if id_cliente not in temp:
+            temp[id_cliente] = {}
+        if prodotto != 0:
+            if prodotto not in temp[id_cliente]:  # 计算进行过的操作
+                temp[id_cliente][prodotto] = 1
+            else:  # 已经进行过的操作
+                temp[id_cliente][prodotto] += 1
+    max_num_aqu = {}
+    for idCliente in temp:
+        max_num_aqu[idCliente] = [-1, -1]  # 初始化
+        for idProdotto in temp[idCliente]:  # 遍历dict[id_cliente]里的prodotto次数
+            num_aqu = temp[idCliente][idProdotto]
+            if num_aqu > max_num_aqu[idCliente][1]:
+                max_num_aqu[idCliente][0] = idProdotto
+                max_num_aqu[idCliente][1] = num_aqu
+    return max_num_aqu
 
 
 ##########################################################

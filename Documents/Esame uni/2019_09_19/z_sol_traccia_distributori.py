@@ -255,7 +255,7 @@ print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 
 print('1) Eseguo la funzione caricaDatiMacchinette: ')
-fnv = '2019_09_19/macchinette.csv'
+fnv = 'Esame-uni/Documents/Esame uni/2019_09_19/macchinette.csv'
 dv = caricaDatiMacchinette(fnv)
 print(dv)
 
