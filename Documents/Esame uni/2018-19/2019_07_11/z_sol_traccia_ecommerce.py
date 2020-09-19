@@ -9,17 +9,20 @@ nomeEsercizio = 'ecommerce'
 # La vera struttura dati caricata dal file sara' più lunga,
 # i primi elementi delle due strutture dati non e' detto che coincidano.
 
-datiCommercio={
+datiCommercio = {
     'vendite': [
-        ('0', '0', 7, 245), ('1', '1', 7, 80), ('5', '3', 4, 200), ('5', '8', 5, 204), ('4', '7', 4, 141), ('0', '6', 5, 240), ('0', '4', 6, 245), ('7', '4', 5, 16), ('8', '0', 6, 54), ('3', '9', 1, 24), ('0', '7', 1, 234), ('5', '1', 4, 168), ('9', '5', 6, 227), ('6', '7', 4, 258), ('1', '0', 9, 67)
-                    ],
+        ('0', '0', 7, 245), ('1', '1', 7, 80), ('5', '3', 4, 200), ('5', '8', 5, 204), ('4', '7', 4, 141), ('0', '6', 5, 240), ('0', '4', 6, 245), ('7',
+                                                                                                                                                    '4', 5, 16), ('8', '0', 6, 54), ('3', '9', 1, 24), ('0', '7', 1, 234), ('5', '1', 4, 168), ('9', '5', 6, 227), ('6', '7', 4, 258), ('1', '0', 9, 67)
+    ],
     'clienti': [
-        ('0', 'Roberto', 'Bianchi'), ('1', 'Sofia', 'Conti'), ('2', 'Sofia', 'Colombo'), ('3', 'Giovanna', 'Salieri'), ('4', 'Sara', 'Lombardi'), ('5', 'Nicola', 'Bianchi'), ('6', 'Paolo', 'Salieri'), ('7', 'Giovanna', 'Rossi'), ('8', 'Lucia', 'Salieri'), ('9', 'Anna', 'Rossi')
-                    ],
+        ('0', 'Roberto', 'Bianchi'), ('1', 'Sofia', 'Conti'), ('2', 'Sofia', 'Colombo'), ('3', 'Giovanna', 'Salieri'), ('4', 'Sara', 'Lombardi'), ('5',
+                                                                                                                                                   'Nicola', 'Bianchi'), ('6', 'Paolo', 'Salieri'), ('7', 'Giovanna', 'Rossi'), ('8', 'Lucia', 'Salieri'), ('9', 'Anna', 'Rossi')
+    ],
     'prodotti': [
-        ('0', 'friggitrice', '0'), ('1', 'aspirapolvere', '3'), ('2', 'fornello', '3'), ('3', 'frullatore', '6'), ('4', 'frullatore', '1'), ('5', 'tostapane', '0'), ('6', 'tostapane', '9'), ('7', 'ferro_da_stiro', '9'), ('8', 'tostapane', '1'), ('9', 'frullatore', '2')
-                     ]
-    }
+        ('0', 'friggitrice', '0'), ('1', 'aspirapolvere', '3'), ('2', 'fornello', '3'), ('3', 'frullatore', '6'), ('4', 'frullatore',
+                                                                                                                   '1'), ('5', 'tostapane', '0'), ('6', 'tostapane', '9'), ('7', 'ferro_da_stiro', '9'), ('8', 'tostapane', '1'), ('9', 'frullatore', '2')
+    ]
+}
 
 
 ##########################################################
@@ -46,7 +49,7 @@ datiCommercio={
 #        tipo_record; id_cliente;nome;cognome
 #        tipo_record;id_prodotto;id_cliente;qt;prezzo_unitario
 #        ...
-#        prodotto;0;friggitrice;0   
+#        prodotto;0;friggitrice;0
 #        cliente;0;Roberto;Bianchi
 #        vendita;0;0;7;245
 #        prodotto;1;aspirapolvere;3
@@ -63,13 +66,13 @@ datiCommercio={
 #  Nel file sono presenti TRE DIVERSE TIPOLOGIE di righe, rispettivamente righe con
 #     * Riga 'prodotto'. Questa riga contiene le informazioni su un
 #       prodotto messo in vendita, la riga ospita le seguenti informazioni:
-#         - tipo_record. C'è sempre la stringa 'prodotto' in questo tipo di riga 
+#         - tipo_record. C'è sempre la stringa 'prodotto' in questo tipo di riga
 #         - id_prodotto. Un valore numerico che identifica univocamente il prodotto
 #         - descrizione. La descrizione del prodotto
 #         - id_categoria. Un valore numerico che identifica la categoria di appartenenza del prodotto.
 #     * Riga 'cliente'. Questa riga contiene le informazioni sui
 #       clienti che hanno effettuato acquisti, la riga ospita le seguenti informazioni:
-#         - tipo_record. C'è sempre la stringa 'cliente' in questo tipo di riga 
+#         - tipo_record. C'è sempre la stringa 'cliente' in questo tipo di riga
 #         - id_cliente. Un valore numerico che identifica univocamente il cliente
 #         - nome. Il nome del cliente
 #         - cognome. Il cognome del cliente
@@ -134,46 +137,54 @@ nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 #   OVVIAMENTE, se userete la struttura dati gia' presente,
 #   l'esercizio sara' considerato non svolto
 def caricaDatiVendite(fn):
-    #return datiCommercio # se non riuscite ad implementare la funzione, potete usare temporaneamente qs dati
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    fd = open(fn,'r')
+    # return datiCommercio # se non riuscite ad implementare la funzione, potete usare temporaneamente qs dati
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
+    fd = open(fn, 'r')
     for ii in range(3):
-        fd.readline() # salto le prime 3 righe di intestazione
-    liProdotti=[]
-    liClienti=[]
-    liVendite=[]
+        fd.readline()  # salto le prime 3 righe di intestazione
+    liProdotti = []
+    liClienti = []
+    liVendite = []
     for line in fd:
-        line=line.strip('\n').strip('\r')
-        rec = line.split(';')      
-        if rec[0]=='prodotto':
+        line = line.strip('\n').strip('\r')
+        rec = line.split(';')
+        if rec[0] == 'prodotto':
             #        tipo_record;id_prodotto;descrizione;id_categoria
-            idProdotto=rec[1]
-            descrizione=rec[2]
-            idCategoria=rec[3]
-            liProdotti.append( (idProdotto, descrizione, idCategoria) )
-        if rec[0]=='cliente':
+            idProdotto = rec[1]
+            descrizione = rec[2]
+            idCategoria = rec[3]
+            liProdotti.append((idProdotto, descrizione, idCategoria))
+        if rec[0] == 'cliente':
             # tipo_record; id_cliente;nome;cognome
-            (id_cliente, nome, cognome) = rec[1:4] # altro modo per estrarre le informazioni
-            liClienti.append( (id_cliente, nome, cognome) )
-        if rec[0]=='vendita':
-            #tipo_record;id_prodotto;id_cliente;qt;prezzo_unitario
+            # altro modo per estrarre le informazioni
+            (id_cliente, nome, cognome) = rec[1:4]
+            liClienti.append((id_cliente, nome, cognome))
+        if rec[0] == 'vendita':
+            # tipo_record;id_prodotto;id_cliente;qt;prezzo_unitario
             idProdotto, idCliente, qt, prezzoUnitario = rec[1:5]
-            liVendite.append( ( idProdotto, idCliente, int(qt), int(prezzoUnitario) ) ) # specifica che qt e prezzoUnitario devono essere memorizzati come interi
-    di= {'prodotti':liProdotti, 'clienti':liClienti, 'vendite':liVendite}
+            # specifica che qt e prezzoUnitario devono essere memorizzati come interi
+            liVendite.append(
+                (idProdotto, idCliente, int(qt), int(prezzoUnitario)))
+    di = {'prodotti': liProdotti, 'clienti': liClienti, 'vendite': liVendite}
     return di
 
 # cancellami
+
+
 def datiVenditeSmall(ds):
-    liVendite=ds['vendite']
+    liVendite = ds['vendite']
     liProdotti = ds['prodotti']
     liClienti = ds['clienti']
 
-    liProdotti2 = [ el for el in liProdotti if int(el[0]) < 10 ] # idProdotto <10
-    liClienti2 =  [ el for el in liClienti if int(el[0])<10] # idCliente<10
-    liVendite2 =  [ el for el in liVendite if int(el[0])<10 and int(el[1])<10 ]
-    di2 = {'prodotti':liProdotti2, 'clienti':liClienti2, 'vendite':liVendite2}
+    liProdotti2 = [el for el in liProdotti if int(
+        el[0]) < 10]  # idProdotto <10
+    liClienti2 = [el for el in liClienti if int(el[0]) < 10]  # idCliente<10
+    liVendite2 = [el for el in liVendite if int(
+        el[0]) < 10 and int(el[1]) < 10]
+    di2 = {'prodotti': liProdotti2, 'clienti': liClienti2, 'vendite': liVendite2}
     print(di2)
-    
+
 
 # - La funzione seguente accetta come parametro in ingresso la struttura dati
 #   restituita dalla funzione caricaDatiVendite().
@@ -194,16 +205,16 @@ def datiVenditeSmall(ds):
 #     la spesa totale del cliente 99 e': (10x5 + 100x2)=250.
 #   - Se un cliente non ha effettuato spese, non deve apparire nel dizionario restituito.
 def totaliClienti(ds):
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    liVendite=ds['vendite']
-    di={}
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
+    liVendite = ds['vendite']
+    di = {}
     for rec in liVendite:
         idProdotto, idCliente, qt, prezzoUnitario = rec
         if idCliente not in di:
-            di[idCliente]=0
-        di[idCliente]+=qt*prezzoUnitario
+            di[idCliente] = 0
+        di[idCliente] += qt*prezzoUnitario
     return di
-        
 
 
 # - La funzione seguente accetta come parametro in ingresso la struttura dati
@@ -224,20 +235,22 @@ def totaliClienti(ds):
 #     ricevuta in ingresso da questa funzione
 #   - se per un id_categoria non ci fossero vendite, inserire 0 nella lista
 def totaliCategorie(ds):
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
     liProdotti = ds['prodotti']
-    idp2cat={}
-    maxCat=0
+    idp2cat = {}
+    maxCat = 0
     for rec in liProdotti:
         (idProdotto, descrizione, idCategoria) = rec
-        idProdotto=int(idProdotto)
-        idCategoria=int(idCategoria)
-        idp2cat[idProdotto]=idCategoria
+        idProdotto = int(idProdotto)
+        idCategoria = int(idCategoria)
+        idp2cat[idProdotto] = idCategoria
         if idCategoria > maxCat:
-            maxCat=idCategoria
-            
-    liTot = [0] * (maxCat+1) # creo una lista di maxCat+1 elementi, ogni elemento e' inizializzato a 0
-    liVendite=ds['vendite']
+            maxCat = idCategoria
+
+    # creo una lista di maxCat+1 elementi, ogni elemento e' inizializzato a 0
+    liTot = [0] * (maxCat+1)
+    liVendite = ds['vendite']
     for rec in liVendite:
         idProdotto, idCliente, qt, prezzoUnitario = rec
         prezzoTot = int(qt) * int(prezzoUnitario)
@@ -245,39 +258,37 @@ def totaliCategorie(ds):
         liTot[idCat] += prezzoTot
     return liTot
 
-    
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
 #   restituita dalla funzione sommarioAppartamenti().
 #   La funzione deve restituire un'unica tupla come la seguente
-#   
+#
 #       (id_cliente, id_prodotto, spesa_del_cliente_per_il_prodotto)
-#   
+#
 #   contenente la combinazione di id_cliente e id_prodotto che ha fatto incassare di piu' all'azienda.
 #   Se ci fossero piu' combinazioni a pari merito, ne deve essere scelta una, con un criterio a vostra scelta.
-# 
+#
 def combinazioneMassima(ds):
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    di={}
-    liVendite=ds['vendite']
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
+    di = {}
+    liVendite = ds['vendite']
     for rec in liVendite:
         idProdotto, idCliente, qt, prezzoUnitario = rec
         key = str(idCliente)+'_'+str(idProdotto)
         if key not in di:
-            di[key]=0
-        di[key]+= int(qt) * int(prezzoUnitario)
+            di[key] = 0
+        di[key] += int(qt) * int(prezzoUnitario)
     # ora cerco il massimo. Restituisco il primo che trovo
-    maxKey=None
+    maxKey = None
     for key in di:
-        if maxKey==None or di[key]>di[maxKey]:
-            maxKey=key
+        if maxKey == None or di[key] > di[maxKey]:
+            maxKey = key
 
     id_cliente = maxKey.split('_')[0]
     id_prodotto = maxKey.split('_')[1]
     spesa = di[maxKey]
     return (id_cliente, id_prodotto, spesa)
-
-
 
 
 ##########################################################
@@ -287,12 +298,11 @@ def combinazioneMassima(ds):
 # (a vostra scelta), se lo modificate, accertatevi
 # che il codice non dia errori in esecuzione.
 ##########################################################
-
 print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 
 print('1) Eseguo la funzione caricaDatiVendite: ')
-fnv='vendite.csv'
+fnv = 'Esame-uni/Documents/Esame uni/2018-19/2019_07_11/vendite.csv'
 dv = caricaDatiVendite(fnv)
 print(dv)
 
