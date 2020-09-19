@@ -11,20 +11,20 @@ nomeEsercizio = 'appartamenti'
 # i primi elementi delle due strutture dati non è detto che coincidano.
 
 datiAppartamenti = [
-('inserimento', 0, 1, 50, 100000),
-('modifica', 0, 2, 90000),
-('vendita', 0, 3),
-('inserimento', 1, 5, 60, 300000),
-('modifica', 1, 6, 346000),
-('vendita', 1, 8),
-('inserimento', 91, 9, 290, 1160000),
-('inserimento', 76, 11, 120, 480000),
-('modifica', 91, 19, 1344000),
-('modifica', 76, 21, 416000),
-('modifica', 91, 49, 1074000),
-('modifica', 91, 62, 1109000),
-('vendita', 76, 255),
-('vendita', 91, 318)
+    ('inserimento', 0, 1, 50, 100000),
+    ('modifica', 0, 2, 90000),
+    ('vendita', 0, 3),
+    ('inserimento', 1, 5, 60, 300000),
+    ('modifica', 1, 6, 346000),
+    ('vendita', 1, 8),
+    ('inserimento', 91, 9, 290, 1160000),
+    ('inserimento', 76, 11, 120, 480000),
+    ('modifica', 91, 19, 1344000),
+    ('modifica', 76, 21, 416000),
+    ('modifica', 91, 49, 1074000),
+    ('modifica', 91, 62, 1109000),
+    ('vendita', 76, 255),
+    ('vendita', 91, 318)
 ]
 ##########################################################
 # DESCRIZIONE DEI FILE CON I DATI
@@ -126,8 +126,27 @@ nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 #   OVVIAMENTE, se userete la struttura dati gia' presente,
 #   l'esercizio sara' considerato non svolto
 def caricaDatiAppartamenti(fn):
-    #return datiAppartamenti # se non riuscite ad implementare la funzione, potete usare temporaneamente qs dati
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # return datiAppartamenti # se non riuscite ad implementare la funzione, potete usare temporaneamente qs dati
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    file = open(fn, 'r')
+    li = []
+    for i in file:
+        i = i.strip('\n').strip('\r')
+        temp = i.split(';')
+        temp_dict = {}
+        for item in temp:
+            new_temp = item.split('=')
+            temp_dict[new_temp[0]] = new_temp[1]
+        if temp_dict['tr'] == 'inserimento':
+            tu = (temp_dict['tr'], temp_dict['idAp'],
+                  temp_dict['data'], temp_dict['m2'], temp_dict['prezzo'])
+        if temp_dict['tr'] == 'modifica':
+            tu = (temp_dict['tr'], temp_dict['idAp'],
+                  temp_dict['data'], temp_dict['prezzo'])
+        if temp_dict['tr'] == 'vendita':
+            tu = (temp_dict['tr'], temp_dict['idAp'], temp_dict['data'])
+        li.append(tu)
+    return li
 
 
 # - La funzione seguente accetta come parametro in ingresso la struttura dati
@@ -150,7 +169,8 @@ def caricaDatiAppartamenti(fn):
 #   - un appartamento può avere o non avere righe di tipo  'variazione'.
 #   - se per un appartamento ci sono state più variazioni di prezzo, queste sono avvenute in giorni diversi
 def sommarioAppartamenti(ds):
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
@@ -164,8 +184,8 @@ def sommarioAppartamenti(ds):
 #   Alla chiave 'diminuzioni' deve essere invece associata una lista con gli idAp degli appartamenti in cui il prezzo di vendita è risultato inferiore al prezzo iniziale.
 #   Gli appartamenti con prezzo di vendita invariato non devono essere inseriti nella struttura dati.
 def variazioniPrezzi(ds):
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
@@ -179,10 +199,8 @@ def variazioniPrezzi(ds):
 #   alla chiave n deve essere associato il numero di appartamenti che hanno subito n modifiche al prezzo.
 #
 def contaVariazioniAppartamenti(ds):
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-
-
-
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
 
 
 ##########################################################
@@ -192,12 +210,11 @@ def contaVariazioniAppartamenti(ds):
 # (a vostra scelta), se lo modificate, accertatevi
 # che il codice non dia errori in esecuzione.
 ##########################################################
-
 print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 
 print('1) Eseguo la funzione caricaDatiAppartamenti: ')
-fna='appartamenti.csv'
+fna = 'Esame-uni/Documents/Esame uni/2018-19/2019_06_24/appartamenti.csv'
 da = caricaDatiAppartamenti(fna)
 print(da)
 
