@@ -11,22 +11,22 @@ nomeEsercizio = 'appartamenti'
 # i primi elementi delle due strutture dati non è detto che coincidano.
 
 datiAppartamenti = [
-('inserimento', 0, 1, 50, 100000),
-('modifica', 0, 2, 90000),
-('vendita', 0, 3),
-('inserimento', 1, 5, 60, 300000),
-('modifica', 1, 6, 346000),
-('vendita', 1, 8),
-('inserimento', 91, 9, 290, 1160000),
-('inserimento', 76, 11, 120, 480000),
-('modifica', 91, 19, 1344000),
-('modifica', 76, 21, 416000),
-('modifica', 91, 49, 1074000),
-('modifica', 91, 62, 1109000),
-('vendita', 76, 255),
-('vendita', 91, 318)
+    ('inserimento', 0, 1, 50, 100000),
+    ('modifica', 0, 2, 90000),
+    ('vendita', 0, 3),
+    ('inserimento', 1, 5, 60, 300000),
+    ('modifica', 1, 6, 346000),
+    ('vendita', 1, 8),
+    ('inserimento', 91, 9, 290, 1160000),
+    ('inserimento', 76, 11, 120, 480000),
+    ('modifica', 91, 19, 1344000),
+    ('modifica', 76, 21, 416000),
+    ('modifica', 91, 49, 1074000),
+    ('modifica', 91, 62, 1109000),
+    ('vendita', 76, 255),
+    ('vendita', 91, 318)
 ]
-    
+
 ##########################################################
 # DESCRIZIONE DEI FILE CON I DATI
 ##########################################################
@@ -127,38 +127,38 @@ nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 #   OVVIAMENTE, se userete la struttura dati gia' presente,
 #   l'esercizio sara' considerato non svolto
 def caricaDatiAppartamenti(fn):
-    #return datiAppartamenti # se non riuscite ad implementare la funzione, potete usare temporaneamente qs dati
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # return datiAppartamenti # se non riuscite ad implementare la funzione, potete usare temporaneamente qs dati
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
     fd = open(fn, 'r')
-    li=[]
+    li = []
     for line in fd:
         line = line.strip('\r').strip('\n')
         attr = line.split(';')
-        di={}
+        di = {}
         for at in attr:
-            kv=at.split('=')
+            kv = at.split('=')
             di[kv[0]] = kv[1]
         # altra possibilita' per trasformare i valori in intero::
         # for k in di:
         #   if k!='tr':
         #      di[k] = int(di[k])
-        if di['tr']=='inserimento':
+        if di['tr'] == 'inserimento':
             # ('inserimento', idAp, data, m2, prezzo),
-            tu = (di['tr'], int(di['idAp']),  int(di['data']), int(di['m2']), int(di['prezzo']) )
-        elif di['tr']=='modifica':
+            tu = (di['tr'], int(di['idAp']),  int(di['data']),
+                  int(di['m2']), int(di['prezzo']))
+        elif di['tr'] == 'modifica':
             # ('modifica', idAp, data, prezzo),
-            tu = (di['tr'], int(di['idAp']),  int(di['data']), int(di['prezzo']) )
-        elif di['tr']=='vendita':
+            tu = (di['tr'], int(di['idAp']),  int(
+                di['data']), int(di['prezzo']))
+        elif di['tr'] == 'vendita':
             # ('vendita', idAp, data),
-            tu = (di['tr'], int(di['idAp']),  int(di['data']) )
+            tu = (di['tr'], int(di['idAp']),  int(di['data']))
         else:
-            print('Riga non identificata') # non dovrebbe mai apparire
+            print('Riga non identificata')  # non dovrebbe mai apparire
 
         li.append(tu)
     return li
-
-
-
 
 
 # - La funzione seguente accetta come parametro in ingresso la struttura dati
@@ -181,25 +181,27 @@ def caricaDatiAppartamenti(fn):
 #   - un appartamento può avere o non avere righe di tipo  'variazione'.
 #   - se per un appartamento ci sono state più variazioni di prezzo, queste sono avvenute in giorni diversi
 def sommarioAppartamenti(ds):
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
     dic = {}
     for tu in ds:
         tipo = tu[0]
         idap = tu[1]
-        if tipo=='inserimento':
+        if tipo == 'inserimento':
             # gli elementi della lista qua sotto saranno utilizzati rispettivamente per
             # data_pubblicazione, data_vendita, prezzo_iniziale, prezzo_vendita, numero_variazioni
-            dic[idap] = [ tu[2], 0, tu[4], 0, 0] # 0 per i valori che non conosco gia'
-        elif tipo=='modifica':
-            dic[idap][3]=tu[3] # Il prezzo di vendita e' l'ultima modifica. Ogni modifica sovrascrive il prezzo precedente
-            dic[idap][4] +=1 # aumento il numero di modifiche
-        elif tipo=='vendita':
-            dic[idap][1]=tu[2] # memorizzo la data di vendita
-    li=[]
+            # 0 per i valori che non conosco gia'
+            dic[idap] = [tu[2], 0, tu[4], 0, 0]
+        elif tipo == 'modifica':
+            # Il prezzo di vendita e' l'ultima modifica. Ogni modifica sovrascrive il prezzo precedente
+            dic[idap][3] = tu[3]
+            dic[idap][4] += 1  # aumento il numero di modifiche
+        elif tipo == 'vendita':
+            dic[idap][1] = tu[2]  # memorizzo la data di vendita
+    li = []
     for k in dic:
-        li.append( (k, dic[k][0], dic[k][1], dic[k][2], dic[k][3], dic[k][4] ) )
+        li.append((k, dic[k][0], dic[k][1], dic[k][2], dic[k][3], dic[k][4]))
     return li
-
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
@@ -216,19 +218,18 @@ def sommarioAppartamenti(ds):
 #   in cui il prezzo di vendita è risultato inferiore al prezzo iniziale.
 #   Gli appartamenti con prezzo di vendita invariato non devono essere inseriti nella struttura dati.
 def variazioniPrezzi(ds):
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    di={'aumenti':[], 'diminuzioni':[]}
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
+    di = {'aumenti': [], 'diminuzioni': []}
     for tu in ds:
-        idAp=tu[0]
-        prezzoIniziale=tu[3]
-        prezzoFinale=tu[4]
+        idAp = tu[0]
+        prezzoIniziale = tu[3]
+        prezzoFinale = tu[4]
         if prezzoFinale > prezzoIniziale:
             di['aumenti'].append(idAp)
         elif prezzoFinale < prezzoIniziale:
             di['diminuzioni'].append(idAp)
     return di
-    
-
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
@@ -242,20 +243,17 @@ def variazioniPrezzi(ds):
 #   alla chiave n deve essere associato il numero di appartamenti che hanno subito n modifiche al prezzo.
 #
 def contaVariazioniAppartamenti(ds):
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    countDi={}
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
+    countDi = {}
     for tu in ds:
-        idAp=tu[0]
-        nvar=tu[5]
+        idAp = tu[0]
+        nvar = tu[5]
         if nvar in countDi:
-            countDi[nvar]+=1
+            countDi[nvar] += 1
         else:
-            countDi[nvar]=1
+            countDi[nvar] = 1
     return countDi
-    
-
-
-
 
 
 ##########################################################
@@ -267,14 +265,12 @@ def contaVariazioniAppartamenti(ds):
 ##########################################################
 
 
-
-
 print('Esercizio %s.' % (nomeEsercizio))
 
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 
 print('1) Eseguo la funzione caricaDatiAppartamenti: ')
-fna='appartamenti.csv'
+fna = 'Esame-uni/Documents/Esame uni/2018-19/2019_06_24/appartamenti.csv'
 da = caricaDatiAppartamenti(fna)
 print(da)
 
@@ -293,7 +289,3 @@ print(varap)
 print('Nome file e autore dello script eseguito')
 print(__file__)  # Questa istruzione stampa il nome dello script, ignoratela.
 print('Autore: %s, %s' % (nome, cognome))
-
-
-
-

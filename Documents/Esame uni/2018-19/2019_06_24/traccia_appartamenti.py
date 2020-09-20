@@ -170,7 +170,23 @@ def caricaDatiAppartamenti(fn):
 #   - se per un appartamento ci sono state più variazioni di prezzo, queste sono avvenute in giorni diversi
 def sommarioAppartamenti(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    temp_dict = {}
+    for item in ds:
+        tipo = item[0]
+        idAp = item[1]
+        if tipo == 'inserimento':
+            # 没有的数据写0,0是为了占位置,这样方便索引
+            temp_dict[idAp] = [item[2], 0, item[4], 0, 0]
+        if tipo == 'modifica':
+            temp_dict[idAp][3] = item[3]  # prezzo vendita
+            temp_dict[idAp][4] += 1  # 每次发生了价格的变动,就加一次numero variazioni
+        if tipo == 'vendita':
+            temp_dict[idAp][1] = item[2]  # data vendita
+    li = []
+    for key in temp_dict:
+        li.append((key, temp_dict[key][0], temp_dict[key][1],
+                   temp_dict[key][2], temp_dict[key][3], temp_dict[key][4]))
+    return li
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
@@ -185,7 +201,19 @@ def sommarioAppartamenti(ds):
 #   Gli appartamenti con prezzo di vendita invariato non devono essere inseriti nella struttura dati.
 def variazioniPrezzi(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    li_aumenti = []
+    li_diminuzioni = []
+    for item in ds:
+        prezzo_iniziale = int(item[3])
+        prezzo_vendita = int(item[4])
+        id_app = int(item[0])
+        if prezzo_vendita > prezzo_iniziale:
+            li_aumenti.append(id_app)
+        elif prezzo_iniziale > prezzo_vendita:
+            li_diminuzioni.append(id_app)
+    print(len(li_aumenti), len(li_diminuzioni))
+    di = {'aumenti': li_aumenti, 'diminuzioni': li_diminuzioni}
+    return di
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
