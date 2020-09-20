@@ -211,7 +211,6 @@ def variazioniPrezzi(ds):
             li_aumenti.append(id_app)
         elif prezzo_iniziale > prezzo_vendita:
             li_diminuzioni.append(id_app)
-    print(len(li_aumenti), len(li_diminuzioni))
     di = {'aumenti': li_aumenti, 'diminuzioni': li_diminuzioni}
     return di
 
@@ -228,7 +227,14 @@ def variazioniPrezzi(ds):
 #
 def contaVariazioniAppartamenti(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di = {}
+    for item in ds:
+        num_variazioni = int(item[5])
+        if num_variazioni in di:
+            di[num_variazioni] += 1
+        else:
+            di[num_variazioni] = 1
+    return di
 
 
 ##########################################################
