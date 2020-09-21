@@ -114,7 +114,6 @@ dicDest = {
 #
 
 
-
 ##########################################################
 # INIZIO DELLA PARTE DA EDITARE
 ##########################################################
@@ -137,6 +136,7 @@ for i in range(7):
     lSigleEuro.append('EURO'+str(i))
 # print (lSigleEuro)
 
+
 def valida(destinazione, siglaEuro):
     if destinazione in dicDest.keys() and siglaEuro in lSigleEuro:
         return True
@@ -144,9 +144,12 @@ def valida(destinazione, siglaEuro):
         return False
 
 # Possibile soluzione alternativa
+
+
 def valida2(destinazione, siglaEuro):
     pass
-    lieu='Euro0,Euro1,Euro2,Euro3,Euro4,Euro5,Euro6,NE'.split(',') # alternativo a scrivere lieu=['Euro0', 'Euro1', ...]
+    lieu = 'Euro0,Euro1,Euro2,Euro3,Euro4,Euro5,Euro6,NE'.split(
+        ',')  # alternativo a scrivere lieu=['Euro0', 'Euro1', ...]
     if siglaEuro in lieu and destinazione in dicDest:
         return True
     return False
@@ -175,10 +178,12 @@ def valida2(destinazione, siglaEuro):
 #   a quella che dovrebbe restituire la vostra implementazione.
 #   OVVIAMENTE, se userete il return con la struttura dati gia' presente,
 #   l'esercizio sara' considerato non svolto
+
+
 def removeQuotMarks(stringa):
     if ',00"':
-        strOut = stringa.replace(',00"','')
-        strOut = strOut.replace('"','')
+        strOut = stringa.replace(',00"', '')
+        strOut = strOut.replace('"', '')
         return strOut
     else:
         return stringa
@@ -202,27 +207,31 @@ def leggiDatiParco(fn):
     return listaTuple
 
 # Soluzione alternativa, in cui, non si gestiscono i doppi apici, ma si fa un controllo sul numero di elementi letti da una riga
+
+
 def leggiDatiParco2(fn):
     pass
-    #return volids
-    li=[]
-    f=open(fn,'r')
-    f.readline() # salto la riga di intestazione
+    # return volids
+    li = []
+    f = open(fn, 'r')
+    f.readline()  # salto la riga di intestazione
     for line in f:
         line = line.strip('\n').split(',')
-        #print(len(line))
-        if len(line)==18: # non richiesto, ma aiuta a fitrar via le righe mal formate
-            #print(line);break
-            prog=int(line[0])
-            annoImmatr=checkAndConvert(line[11]) # vedi definizione qua sopra
+        # print(len(line))
+        if len(line) == 18:  # non richiesto, ma aiuta a fitrar via le righe mal formate
+            # print(line);break
+            prog = int(line[0])
+            # vedi definizione qua sopra
+            annoImmatr = checkAndConvert(line[11])
             alimentazione = line[6]
             siglaEU = line[13]
-            if siglaEU=='': # qs. modifica non era chiesta esplicitamente nel testo. E' stata inserita per gestire le stringhe vuote. Altre soluzioni sono possibili es., lasciare la stringa vuota cosi' come e'
-                siglaEU='NE'
+            if siglaEU == '':  # qs. modifica non era chiesta esplicitamente nel testo. E' stata inserita per gestire le stringhe vuote. Altre soluzioni sono possibili es., lasciare la stringa vuota cosi' come e'
+                siglaEU = 'NE'
             co2 = checkAndConvert(line[14])
             destinazione = line[2]
             if (destinazione, siglaEU):
-                li.append( (prog, annoImmatr, alimentazione, siglaEU, co2, destinazione) )
+                li.append((prog, annoImmatr, alimentazione,
+                           siglaEU, co2, destinazione))
     f.close()
     return li
 
@@ -232,6 +241,8 @@ def leggiDatiParco2(fn):
 #       [[anno,numVeicoliImm], [1999,9302190], ...]
 #   in cui *numVeicoliImm* e' il numero di immatricolazioni effettuate  in *anno*.
 #   Per esempio nell'anno 1999, ci sono state 9302190 immatricolazioni.
+
+
 def immatricolazioniAnno(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
     # [(progr, data, alim, siglaE, co2, dest)]
@@ -263,6 +274,8 @@ def immatricolazioniAnno(ds):
 #  numVeicoliImm ha associato il numero totale dei veicoli immatricolati,
 #  emissioneMedia ha associato il valor medio dell'emissione per quel codice calcolata
 #  sulla base dei valori in EMISSIONI_CO2.
+
+
 def analisiEcoEmissioni(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
     dictImm = {}
@@ -278,7 +291,8 @@ def analisiEcoEmissioni(ds):
                 dictImm[siglaE]['emissioneTot'] += co2
     dictOut = {}
     for sigla in dictImm:
-        dictOut[sigla] = {'numVeicoliImm':dictImm[sigla]['numVeicoliImm'], 'emissioneMedia': dictImm[sigla]['emissioneTot'] / (float(dictImm[sigla]['numVeicoliImm']))}
+        dictOut[sigla] = {'numVeicoliImm': dictImm[sigla]['numVeicoliImm'],
+                          'emissioneMedia': dictImm[sigla]['emissioneTot'] / (float(dictImm[sigla]['numVeicoliImm']))}
     return dictOut
 
 
@@ -310,7 +324,6 @@ print(lIA)
 print("4) Eseguo la funzione analisiEcoEmissioni: ")
 res = analisiEcoEmissioni(pvc)
 print(res)
-
 
 
 print('Nome e autore dello script eseguito')
