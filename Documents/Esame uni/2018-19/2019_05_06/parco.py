@@ -184,21 +184,34 @@ def costoGiornaliero(ds):
     mese2giorni = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31,
                    8: 31, 9: 30, 10: 31, 11: 30, 12: 31}  # mese:giorni_nel_mese
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    date = ds
+    new_date = date.split('/')
+    gg = int(new_date[0])
+    mm = int(new_date[1])
+    aa = int(new_date[2])
+    ggpass = gg
+    i = 1
+    while i < mm:
+        ggpass += mese2giorni[i]
+        i += 1
+    # 计算星期几的方式是x+y%7 , 也就是取余数,列如:今天是星期一==> x=1,过了一天 ==> y =1 ,所以 x+y % 7 = 2 % 7 = 2 也就是星期二
+    gg_sett = (ggpass-1) % 7  # 计算日期之前的所收的费用
+    return g2t[gg_sett]
+
+    #   - La funzione seguente accetta come parametri in ingresso:
+    #       - la struttura dati restituita dalla funzione leggiDatiIngressiParco()
+    #   La funzione deve restituire un dizionario dove per ogni visitatore è presente una
+    #   coppia chiave:valore avente per chiave il codice dell'utente e per valore la tupla
+    #   (prezzo_con_abbonamento, prezzo_senza_abbonamento).
+    #   Prezzo con abbonamento rappresenta il costo dell'abbonamento sottoscritto,
+    #   mentre prezzo_senza_abbonamento rappresenta il prezzo che l'utente
+    #   pagherebbe se non avesse sottoscritto l'abbonamento.
+    #   Se un visitatore non ha sottoscritto un abbonamento i 2 valori della tupla
+    #   devono coincidere e devono essere pari al prezzo senza abbonamento.
+    #   Il prezzo_senza_abbonamento si ottiene sommando i prezzi degli ingressi giornalieri
+    #   (calcolati utilizzando la funzione costoGiornaliero) associati a ciascun ingresso effettuato dal visitatore.
 
 
-#   - La funzione seguente accetta come parametri in ingresso:
-#       - la struttura dati restituita dalla funzione leggiDatiIngressiParco()
-#   La funzione deve restituire un dizionario dove per ogni visitatore è presente una
-#   coppia chiave:valore avente per chiave il codice dell'utente e per valore la tupla
-#   (prezzo_con_abbonamento, prezzo_senza_abbonamento).
-#   Prezzo con abbonamento rappresenta il costo dell'abbonamento sottoscritto,
-#   mentre prezzo_senza_abbonamento rappresenta il prezzo che l'utente
-#   pagherebbe se non avesse sottoscritto l'abbonamento.
-#   Se un visitatore non ha sottoscritto un abbonamento i 2 valori della tupla
-#   devono coincidere e devono essere pari al prezzo senza abbonamento.
-#   Il prezzo_senza_abbonamento si ottiene sommando i prezzi degli ingressi giornalieri
-#   (calcolati utilizzando la funzione costoGiornaliero) associati a ciascun ingresso effettuato dal visitatore.
 def ottieniIncassi(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
     pass
