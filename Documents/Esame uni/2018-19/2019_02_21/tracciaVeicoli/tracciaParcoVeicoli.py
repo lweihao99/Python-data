@@ -4,7 +4,7 @@
 
 nomeEsercizio = 'ParcoVeicoliCircolanti'
 
-# di seguito sara' spiegato come usare questa struttura dati 
+# di seguito sara' spiegato come usare questa struttura dati
 dicDest = {
     '7': 'AUTOVEICOLO IN SERVIZIO PUBBLICO DI LINEA INTEGRATIVO',
     '8': 'AUTOVEICOLO USO ESCLUSIVO DI POLIZIA',
@@ -112,7 +112,6 @@ dicDest = {
 #
 
 
-
 ##########################################################
 # INIZIO DELLA PARTE DA EDITARE
 ##########################################################
@@ -159,7 +158,7 @@ def valida(destinazione, siglaEuro):
 #   l'esercizio sara' considerato non svolto
 def leggiDatiParco(fn):
     pass
-    #return volids
+    # return volids
 
 
 # - La funzione seguente accetta come parametro in ingresso
@@ -167,7 +166,7 @@ def leggiDatiParco(fn):
 #   La funzione deve restituire una lista di liste cosi' formata:
 #       [[anno,numVeicoliImm], [1999,9302190], ...]
 #   in cui *numVeicoliImm* e' il numero di immatricolazioni effettuate  in *anno*.
-#   Per esempio nell'anno 1999, ci sono state 9302190 immatricolazioni. 
+#   Per esempio nell'anno 1999, ci sono state 9302190 immatricolazioni.
 def immatricolazioniAnno(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
     pass
@@ -221,7 +220,6 @@ print(lIA)
 print("4) Eseguo la funzione analisiEcoEmissioni: ")
 res = analisiEcoEmissioni(pvc)
 print(res)
-
 
 
 print('Nome e autore dello script eseguito')

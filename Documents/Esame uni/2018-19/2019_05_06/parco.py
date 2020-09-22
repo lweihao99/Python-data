@@ -151,11 +151,11 @@ def leggiDatiIngressiParco(fn):
         id_user = temp_li[0]
         if temp_li[1] == 'abb':
             i = 'abbonamento'
-            datalist.append((id_user, temp_li[0], temp_li[2]))
+            datalist.append((i, int(id_user), float(temp_li[2])))
         if temp_li[1] == 'sing':
             i = 'entrata'
             for k in temp_li[2:]:
-                datalist.append((i, temp_li[0], k))
+                datalist.append((i, int(id_user), k))
 
     return datalist
 
@@ -184,8 +184,8 @@ def costoGiornaliero(ds):
     mese2giorni = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31,
                    8: 31, 9: 30, 10: 31, 11: 30, 12: 31}  # mese:giorni_nel_mese
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    date = ds
-    new_date = date.split('/')
+
+    new_date = ds.split('/')
     gg = int(new_date[0])
     mm = int(new_date[1])
     aa = int(new_date[2])
@@ -214,8 +214,31 @@ def costoGiornaliero(ds):
 
 def ottieniIncassi(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    abbonati = {}
+    singoli = {}
+    for tu in ds:
+        temp = tu[0]
+        if temp == 'abbonamento':
+            id_user = tu[1]
+            prezzo = tu[2]
+            abbonati[id_user] = prezzo
+        else:
+            id_user = tu[1]
+            data = tu[2]
+            prezzo_ingresso = costoGiornaliero(data)
+            if id_user in singoli:
+                # somma del prezzo_ingresso = prezzo_senza_abbonamento
+                singoli[id_user] += prezzo_ingresso
+            else:
+                singoli[id_user] = prezzo_ingresso
 
+    output = {}
+    for id_user in singoli:
+        if id_user in abbonati:
+            output[id_user] = (abbonati[id_user], singoli[id_user])
+        else:
+            output[id_user] = (singoli[id_user], singoli[id_user])
+    return output
 
 #   - La funzione seguente accetta come parametri in ingresso:
 #       - la struttura dati restituita dalla funzione leggiDatiIngressiParco()
@@ -230,9 +253,18 @@ def ottieniIncassi(ds):
 #   In un utente c'e' "poca differenza" se la differenza tra la somma degli ingressi singoli
 #   e il costo dell'abbonamento e' inferiore al 10 per cento
 #   del costo dell'abbonamento.
+
+
 def valutaImpattoAbbonamenti(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    temp = ottieniIncassi(ds)
+    diff = 0
+    for key in temp:
+        (prezzo_abbonati, prezzo_non_abbonati) = temp[key]
+        if (prezzo_non_abbonati-prezzo_abbonati) >= prezzo_abbonati * 0.10:
+            diff += prezzo_non_abbonati - prezzo_abbonati
+
+    return diff
 
 
 ##########################################################
