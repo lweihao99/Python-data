@@ -313,7 +313,7 @@ print('1) Eseguo la funzione valida: ')
 print(valida('3', 'EURO6'))
 
 print('2) Eseguo la funzione leggiDatiParco: ')
-nomeFile = 'ParcoVeicoliCircolantiLombardia2018.csv'
+nomeFile = 'Esame-uni/Documents/Esame uni/2018-19/2019_02_21/tracciaVeicoli/ParcoVeicoliCircolantiLombardia2018.csv'
 pvc = leggiDatiParco(nomeFile)
 print(pvc[0])
 

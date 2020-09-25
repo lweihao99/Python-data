@@ -116,8 +116,8 @@ dicDest = {
 # INIZIO DELLA PARTE DA EDITARE
 ##########################################################
 
-cognome = 'Sostituiscimi con il cognome'  # inserisci qua il tuo cognome
-nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
+cognome = 'Liu'  # inserisci qua il tuo cognome
+nome = 'Weihao'  # inserisci qua il tuo nome
 
 
 # - La funzione seguente accetta come parametro in ingresso due stringhe, rispettivamente
@@ -128,8 +128,13 @@ nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 #   'Parco_Veicoli_Circolanti_Campi.txt'.
 #   Per il campo DESTINAZIONE potete sfruttare la struttura dati
 #   dicDEST presente all'inizio di questo script.
+siglEuro = ['NE']
+for i in range(7):
+    siglEuro.append('EURO'+str(i))
+
+
 def valida(destinazione, siglaEuro):
-    pass
+    return destinazione in dicDest.keys() and siglaEuro in siglEuro
 
 
 # - La funzione seguente accetta come parametro in ingresso
@@ -157,7 +162,22 @@ def valida(destinazione, siglaEuro):
 #   OVVIAMENTE, se userete il return con la struttura dati gia' presente,
 #   l'esercizio sara' considerato non svolto
 def leggiDatiParco(fn):
-    pass
+    listaTu = []
+    file = open(fn, 'r')
+    file.readline()
+    for item in file:
+        item = item.strip('\n').strip('\r')
+        temp = item.split(',')
+        PROGR = temp[0]
+        DT_PRIMA_IMMATRICOLAZIONE = temp[11]
+        ALIMENTAZIONE = temp[6]
+        siglaEuro = temp[13]
+        EMISSIONI_CO2 = temp[14]
+        DESTINAZIONE = temp[2]
+        if valida(DESTINAZIONE, siglaEuro):
+            listaTu.append((PROGR, DT_PRIMA_IMMATRICOLAZIONE,
+                            ALIMENTAZIONE, siglaEuro, EMISSIONI_CO2, DESTINAZIONE))
+    return listaTu
     # return volids
 
 
@@ -169,7 +189,17 @@ def leggiDatiParco(fn):
 #   Per esempio nell'anno 1999, ci sono state 9302190 immatricolazioni.
 def immatricolazioniAnno(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    lista_li = []
+    temp_dict = {}
+    for item in ds:
+        (num_vei_imm, anno, alimentazione, sigEuro, co2, destinazione) = item
+        if anno not in temp_dict:
+            temp_dict[anno] = 1
+        else:
+            temp_dict[anno] += 1
+    for anno in temp_dict:
+        lista_li.append([anno, temp_dict[anno]])
+    return lista_li
 
 
 # - La funzione seguente accetta come parametro in ingresso
@@ -189,8 +219,23 @@ def immatricolazioniAnno(ds):
 #  sulla base dei valori in EMISSIONI_CO2.
 def analisiEcoEmissioni(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    temp_dict = {}
+    for item in ds:
+        (progr, anno, alimentazione, sigEuro, co2, destinazione) = item
+        if co2 != '':
+            co2 = float(co2)
+            if sigEuro not in temp_dict:
+                temp_dict[sigEuro] = {'numVeicoli': 1, 'emissione': co2}
+            else:
+                temp_dict[sigEuro]['numVeicoli'] += 1
+                temp_dict[sigEuro]['emissione'] += co2
 
+    dicOut = {}
+    for key in temp_dict:
+        dicOut[key] = {'numVeicoliImm': temp_dict[key]['numVeicoli'],
+                       'emissioneMedia': temp_dict[key]['emissione']/temp_dict[key]['numVeicoli']}
+
+    return dicOut
 
 ##########################################################
 # Fine del compito e della parte da editare obbligatoriamente
@@ -209,7 +254,7 @@ print('1) Eseguo la funzione valida: ')
 print(valida('2', 'EURO9'))
 
 print('2) Eseguo la funzione leggiDatiParco: ')
-nomeFile = 'ParcoVeicoliCircolantiLombardia2018.csv'
+nomeFile = 'Esame-uni/Documents/Esame uni/2018-19/2019_02_21/tracciaVeicoli/ParcoVeicoliCircolantiLombardia2018.csv'
 pvc = leggiDatiParco(nomeFile)
 print(pvc)
 
