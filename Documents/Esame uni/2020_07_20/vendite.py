@@ -170,14 +170,17 @@ def caricaDatiAbitazioni(fn):
         record = record.strip('\n').strip('\r')
         line = record.split(';')
         type_ = line[1]
-        data = line[0]
-        id_annuncio = int(line[2])
         if type_ == 'pubblicazione':
+            data = line[0]
+            id_annuncio = int(line[2])
             datalist.append((type_, data, id_annuncio,
                              str(line[3]), int(line[4]), int(line[5])))
         elif type_ == 'rimozione':
+            id_annuncio = int(line[2])
             datalist.append((type_, data, id_annuncio))
         elif type_ == 'catasto':
+            data = line[0]
+            id_annuncio = int(line[2])
             datalist.append((type_, data, id_annuncio,
                              str(line[3]), int(line[4]), int(line[5])))
     return datalist
@@ -219,9 +222,11 @@ def giorno_data(fn):
     mm = int(temp[1])
     temp_li = [0] * 12
     i = 0
+    prog = 0
     for item in dizGiorniMese:
         # for item in ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre']:
-        temp_li[i] += dizGiorniMese[item]
+        prog += dizGiorniMese[item]
+        temp_li[i] = prog
         i += 1
     return gg+temp_li[mm-1]
 
@@ -242,7 +247,7 @@ def calcolaDurataAnnuncio(ds):
             id_annuncio = tu[2]
             dict_b[id_annuncio] = giorno_data(data)
     for id_annuncio in dict_a:
-        dict_c[id_annuncio] = dict_a[id_annuncio] - dict_b[id_annuncio]
+        dict_c[id_annuncio] = dict_b[id_annuncio] - dict_a[id_annuncio]
     return dict_c
 
 
@@ -301,7 +306,23 @@ def prezziCategorieAbitazioni(ds):
 
 def individuaAcquirente(ds):
     # Implementa il codice della funzione qua sotto. La riga con il pass puo' essere cancellata.
-    pass
+    temp_dict = {}
+    max_mobili_acquistati = 0
+    temp_max = 0
+    for item in ds:
+        type_ = item[0]
+        if type_ == 'catasto':
+            idProprietario = item[2]
+            if idProprietario not in temp_dict:
+                temp_dict[idProprietario] = 1
+            else:
+                temp_dict[idProprietario] += 1
+    for key in temp_dict:
+        if temp_dict[key] > temp_max:
+            temp_max = temp_dict[key]
+            max_mobili_acquistati = key
+
+    return max_mobili_acquistati
 
 
 ##########################################################
@@ -311,7 +332,6 @@ def individuaAcquirente(ds):
 # (a vostra scelta), se lo modificate, accertatevi
 # che il codice non dia errori in esecuzione.
 ##########################################################
-
 
 print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
