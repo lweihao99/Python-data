@@ -36,8 +36,9 @@ dLavori = {'32061199': {'location': 'China', 'date': '2020 Feb 16', 'title': '[C
            '32056235': {'location': 'United States', 'date': '2020 Feb 13', 'title': 'Does SARS-CoV-2 has a longer incubation period than SARS and MERS?', 'doi': '10.1002/jmv.25708'},
            '32056143': {'location': 'Germany', 'date': '2020 Feb 13', 'title': 'Non-influenza respiratory viruses in adult patients admitted with influenza-likeillness: a 3-year prospective multicenter study.', 'doi': '10.1007/s15010-019-01388-1'},
            '32055945': {'location': 'Germany', 'date': '2020 Feb 13', 'title': 'Initial CT findings and temporal changes in patients with the novel coronaviruspneumonia (2019-nCoV): a study of 63 patients in Wuhan, China.', 'doi': '10.1007/s00330-020-06731-x'},
-           '32050635:':{'location': 'Switzerland', 'date': '2020 Feb 10', 'title': 'Potential Maternal and Infant Outcomes from (Wuhan) Coronavirus 2019-nCoVInfecting Pregnant Women: Lessons from SARS, MERS, and Other Human CoronavirusInfections.', 'doi': '10.3390/v12020194' },
-           '32053470': {'location': 'United States', 'date': '2020 Feb 13', 'title': 'Time Course of Lung Changes On Chest CT During Recovery From 2019 NovelCoronavirus (COVID-19) Pneumonia.', 'doi': '20.1148/radiol.2020200370'} # attenzione, qua il doi non e' conforme
+           '32050635:': {'location': 'Switzerland', 'date': '2020 Feb 10', 'title': 'Potential Maternal and Infant Outcomes from (Wuhan) Coronavirus 2019-nCoVInfecting Pregnant Women: Lessons from SARS, MERS, and Other Human CoronavirusInfections.', 'doi': '10.3390/v12020194'},
+           # attenzione, qua il doi non e' conforme
+           '32053470': {'location': 'United States', 'date': '2020 Feb 13', 'title': 'Time Course of Lung Changes On Chest CT During Recovery From 2019 NovelCoronavirus (COVID-19) Pneumonia.', 'doi': '20.1148/radiol.2020200370'}
            }
 
 
@@ -52,8 +53,8 @@ dLavori = {'32061199': {'location': 'China', 'date': '2020 Feb 16', 'title': '[C
 #   Il file memorizza le informazioni sulle pubblicazioni presenti nel database
 #   PubMed che hanno come argomento gli studi scientifici sui coronavirus.
 #   Si ricorda che i coronavirus sono una famiglia di diversi virus (tra cui l'influenza).
-#   Un esempio del contenuto del file e' il seguente. Nell'esempio qua sotto non considerate 
-#   il simbolo # e gli spazi iniziali. 
+#   Un esempio del contenuto del file e' il seguente. Nell'esempio qua sotto non considerate
+#   il simbolo # e gli spazi iniziali.
 #   Gli a capo presenti nel file (\r\n) sono stati omessi per semplicita'.
 #
 # PMID- 32061199
@@ -68,36 +69,36 @@ dLavori = {'32061199': {'location': 'China', 'date': '2020 Feb 16', 'title': '[C
 # TI  - [Inhibitors of RAS Might Be a Good Choice for the Therapy of COVID-19 Pneumonia].
 # PL  - China
 # AID - 10.3760/cma.j.issn.1001-0939.2020.0014 [doi]
-#   
-#   I dati di una pubblicazione sono composti dal PMID (un numero che 
+#
+#   I dati di una pubblicazione sono composti dal PMID (un numero che
 #   identifica univocamente la pubblicazione all'interno del dataset),
 #   la data di pubblicazione, il titolo, il luogo di pubblicazione ed
 #   il suo identificativo digitale (doi).
-#   
+#
 #   Le informazioni associate a ciascuna pubblicazione sono suddivise su più
-#   righe, le righe hanno un'intestazione che ne dichiara il tipo, 
-#   ogni informazione occupa una singola riga, ad eccezione dei titoli 
+#   righe, le righe hanno un'intestazione che ne dichiara il tipo,
+#   ogni informazione occupa una singola riga, ad eccezione dei titoli
 #   che possono estendersi su più righe come indicato qua sotto.
-#   IMPORTANTE: I dati di una pubblicazione INIZIANO SEMPRE con il PMID, 
-#   e TERMINANO SEMPRE con una riga vuota. Quindi, la riga vuota funge 
+#   IMPORTANTE: I dati di una pubblicazione INIZIANO SEMPRE con il PMID,
+#   e TERMINANO SEMPRE con una riga vuota. Quindi, la riga vuota funge
 #   da separatore tra due pubblicazioni.
 #       * `PMID` (PubMed ID) identificativo unico nel database PubMed
 #       * `TI`  (TItolo) titolo della pubblicazione. Se il titolo occupa più righe, le righe
-#              aggiuntive non hanno intestazione e sono indentate a destra. 
+#              aggiuntive non hanno intestazione e sono indentate a destra.
 #              Le [] dove presenti, fanno parte integrante del titolo.
 #       * `DP` (Date of Publication) la data di pubblicazione
 #       * `PL` (Location) il luogo di pubblicazione
 #       * `AID` (Alternative IDentifier). Identificatore (alternativo al PMID)
 #          che può essere usato per recuperare la pubblicazione in altri database.
-#          In una singola pubblicazione ci possono essere diversi AID  
-#          (quindi possono esserci diverse righe che iniziano con AID). 
-#          Tra i diversi AID è molto importante il DOI (riconoscibile dalla 
-#          presenza della stringa '[doi]'). 
-#          Il DOI (digital object identifier) è utile per recuperare la 
-#          pubblicazione dal Web. Non tutte le pubblicazioni hanno il DOI, 
+#          In una singola pubblicazione ci possono essere diversi AID
+#          (quindi possono esserci diverse righe che iniziano con AID).
+#          Tra i diversi AID è molto importante il DOI (riconoscibile dalla
+#          presenza della stringa '[doi]').
+#          Il DOI (digital object identifier) è utile per recuperare la
+#          pubblicazione dal Web. Non tutte le pubblicazioni hanno il DOI,
 #          tuttavia se presente, lo trovate una volta solo per ogni pubblicazione.
 #
-#    Si suggerisce caldamente di ispezionare il file .txt 
+#    Si suggerisce caldamente di ispezionare il file .txt
 
 ##########################################################
 # INTRODUZIONE AL LAVORO DA SVOLGERE
@@ -150,13 +151,13 @@ nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 # Tutti gli elementi del dizionario devono essere di tipo stringa.
 # Dal valore associato a 'doi' deve essere rimossa la stringa ' [doi]'.
 # Tra i vari AID disponibili, (si ricorda che una pubblicazione può avere diversi AID)
-# dovete utilizzare solamente il DOI. Se il DOI non è disponibile, 
+# dovete utilizzare solamente il DOI. Se il DOI non è disponibile,
 # nel dizionario (di cui sopra) associate la stringa vuota alla chiave 'doi'.
 # Si ricorda che nel file, i dati di una singola pubblicazione
 # - iniziano sempre con il PMID
 # - terminano con una riga vuota
-# l'ordine di tutti gli altri elementi tra il PMID e la riga vuota può variare. 
-# Si suggerisce caldamente di ispezionare il file .txt 
+# l'ordine di tutti gli altri elementi tra il PMID e la riga vuota può variare.
+# Si suggerisce caldamente di ispezionare il file .txt
 #
 # NOTA BENE: il risultato di questa funzione e' utilizzato dalle funzioni successive,
 # se in via provvisoria volete far lavorare le funzioni successive senza
@@ -167,59 +168,64 @@ def caricaDatiPubblicazioni_v2(fn):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
     pass
     fd = open(fn, 'r')
-    fd.readline() # salto la prima riga
-    pmid=''
-    di={}
-    largeDict={}
+    fd.readline()  # salto la prima riga
+    pmid = ''
+    di = {}
+    largeDict = {}
     for line in fd:
-        line=line.strip('\n').strip('\r')
-        tipoRiga=line[:5]
-        parteRimanente=line[6:]
-        if len(line)>0: # gli \n e \r sono gia' stati tolti
-            # siamo nel caso di una riga diversa da quella vuota    
-            if tipoRiga=='PMID-':
+        line = line.strip('\n').strip('\r')
+        tipoRiga = line[:5]
+        parteRimanente = line[6:]
+        if len(line) > 0:  # gli \n e \r sono gia' stati tolti
+            # siamo nel caso di una riga diversa da quella vuota
+            if tipoRiga == 'PMID-':
                 # Imposto i valori per una nuova pubblicazione, dato che il pmid e' il primo tra tutti i dati
-                pmid=parteRimanente.strip(' ')
-                di={'location':'', 'date':'' , 'title':'', 'doi':''}
-            elif tipoRiga=='DP  -':
-                di['date']=parteRimanente.strip(' ')
-            elif tipoRiga=='TI  -':
-                di['title']=parteRimanente.strip(' ')
-            elif tipoRiga=='     ': # sono le righe con il continuo del titolo
-                di['title']=di['title'] + ' ' +parteRimanente.strip(' ') # lo spazio serve per non appiccicare l'ultima parola della riga precedente con la prima parola della riga attuale
-            elif tipoRiga=='PL  -':
-                di['location']=parteRimanente.strip(' ')
-            elif tipoRiga=='AID -':
-                aid=parteRimanente.strip(' ')
+                pmid = parteRimanente.strip(' ')
+                di = {'location': '', 'date': '', 'title': '', 'doi': ''}
+            elif tipoRiga == 'DP  -':
+                di['date'] = parteRimanente.strip(' ')
+            elif tipoRiga == 'TI  -':
+                di['title'] = parteRimanente.strip(' ')
+            elif tipoRiga == '     ':  # sono le righe con il continuo del titolo
+                # lo spazio serve per non appiccicare l'ultima parola della riga precedente con la prima parola della riga attuale
+                di['title'] = di['title'] + ' ' + parteRimanente.strip(' ')
+            elif tipoRiga == 'PL  -':
+                di['location'] = parteRimanente.strip(' ')
+            elif tipoRiga == 'AID -':
+                aid = parteRimanente.strip(' ')
                 if '[doi]' in aid:
                     di['doi'] = aid.strip(' [doi]')
-        else: 
-            # se siamo qua vuol dire che siamo arrivati alla riga vuota che chiude i dati di una pubblicazione 
-            largeDict[pmid]=di # inserisco nel dizionario piu' grande il dizionario con i dati della singola pubblicazione
+        else:
+            # se siamo qua vuol dire che siamo arrivati alla riga vuota che chiude i dati di una pubblicazione
+            # inserisco nel dizionario piu' grande il dizionario con i dati della singola pubblicazione
+            largeDict[pmid] = di
     fd.close()
     return largeDict
 
 # Un'altra possibile implementazione
+
+
 def caricaDatiPubblicazioni(fn):
     # return dLavori # se non riuscite ad implementare la funzione, potete usare temporaneamente questa
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
     pass
     lKinds = ['PMID', 'PL  ', 'DP  ', 'TI  ', 'AID ', '    ']
-    dict2ret = {} # Il dizionario che dovra' essere restituito
-    with open('pubmedCoronavirus.txt', 'r') as streamIn:
+    dict2ret = {}  # Il dizionario che dovra' essere restituito
+    with open(fn, 'r') as streamIn:
         dPub = {'PMID': '', 'location': '', 'date': '', 'title': '', 'doi': ''}
         PMID = 'fake'
         for riga in streamIn:
-            # print(riga)
+            print(riga)
             kind = riga[:4]
-            content = riga[5:] # partendo da 5 si incorpora lo spazio iniziale
+            content = riga[5:]  # partendo da 5 si incorpora lo spazio iniziale
             if kind in lKinds:  # tipo di interesse o righe con tipo '    -'
                 if kind == 'PMID':
-                    dict2ret[PMID] = dPub     # Inserisco i dati della vecchia pubblicazione.
-                                    # se sono all'inizio verra' inserito 'fake' come PMID (che sara' poi rimosso alla fine,
-                                    # altrimenti sara' utilizzato il PMID letto in precedenza
-                    PMID = content.strip() # Setto il nuovo PMID
-                    # print(PMID)
+                    # Inserisco i dati della vecchia pubblicazione.
+                    dict2ret[PMID] = dPub
+                    # se sono all'inizio verra' inserito 'fake' come PMID (che sara' poi rimosso alla fine,
+                    # altrimenti sara' utilizzato il PMID letto in precedenza
+                    PMID = content.strip()  # Setto il nuovo PMID
+                    print(PMID)
                     dPub = {'location': '', 'date': '', 'title': '', 'doi': ''}
                 elif kind == 'TI  ':
                     dPub['title'] += content.strip()
@@ -238,11 +244,13 @@ def caricaDatiPubblicazioni(fn):
 
     # elimino i dati fake inseriti inizialmente
     del dict2ret['fake']
-    
+
     return(dict2ret)
 
 # Funzione accessoria utilizzata dalla funzione successiva
-def checkDOI(sDOI): # cancellami
+
+
+def checkDOI(sDOI):  # cancellami
     if sDOI[:3] == '10.':
         return sDOI
     else:
@@ -251,9 +259,10 @@ def checkDOI(sDOI): # cancellami
 # - La funzione controllaDOI accetta come parametri in ingresso la struttura dati
 #   restituita dalla funzione caricaDatiPubbicazioni().
 #   La funzione deve restituire una struttura dati identica a quella ricevuta in ingresso in cui
-#   tutti i doi non conformi (maggiori dettagli fra poco) sono sostituiti da una stringa vuota. 
+#   tutti i doi non conformi (maggiori dettagli fra poco) sono sostituiti da una stringa vuota.
 #   Un doi è da considerarsi conforme se inizia esattamente per '10.', altrimenti è da
 #   considerarsi non conforme.
+
 
 def controllaDOI(dPubbl):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
@@ -271,6 +280,8 @@ def controllaDOI(dPubbl):
 #   { anno_1: nPubblicazioniAnno1, anno_2: nPubblicazioniAnno2, ...}
 #   dove sia le chiavi anno_i che e i valori dei conteggi associati devono
 #   essere valori interi.
+
+
 def annoPubblicazioni(diz):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
     pass
@@ -285,19 +296,19 @@ def annoPubblicazioni(diz):
     return dCounts
 
 
-# - La funzione contaParole accetta come parametri in ingresso 
-#   * la struttura dati restituita dalla funzione caricaDatiPubblicazioni() ed 
+# - La funzione contaParole accetta come parametri in ingresso
+#   * la struttura dati restituita dalla funzione caricaDatiPubblicazioni() ed
 #   * una stringa identificativa di una pubblicazione (vale a dire, un PMID).
 #   La funzione deve restituire, dopo aver rimosso i simboli di punteggiatura,
 #   il numero di parole presenti nel titolo associato alla pubblicazione
 #   identificata dalla stringa PMID passato come secondo parametro.
-#   Come simboli di punteggiatura, orientativamente considerate 
-#   .,:;?!-—()[]'“”... 
-#   (l'ultimo elemento sono i 3 punti di sospensione), i due segni meno consecutivi 
+#   Come simboli di punteggiatura, orientativamente considerate
+#   .,:;?!-—()[]'“”...
+#   (l'ultimo elemento sono i 3 punti di sospensione), i due segni meno consecutivi
 #   sono in realtà due tipi diversi di meno. Se qualcuno dei simboli di cui sopra
 #   vi da problemi nell'editor di testo, ignoratelo.
-#   Si ricorda che, su una variabile di tipo stringa, è possibile richiamare 
-#   il metodo replace con la notazione punto per sostituire una sottostringa con 
+#   Si ricorda che, su una variabile di tipo stringa, è possibile richiamare
+#   il metodo replace con la notazione punto per sostituire una sottostringa con
 #   un'altra, come nell'esempio seguente
 #   st='ciao ciao'
 #   st2 = st.replace('o', 'u')) # 'ciau ciau'
@@ -317,9 +328,10 @@ def contaParole(diz, ID):
     pass
     titolo = diz[ID]['title']
     titoloNoPunt = togliPunteggiatura(titolo)
-    #print(titolo)
-    #print(titoloNoPunt)
-    titoloNoPunt = titoloNoPunt.replace('  ', ' ') #riduco eventuali spazi doppi a spazi singoli 
+    # print(titolo)
+    # print(titoloNoPunt)
+    # riduco eventuali spazi doppi a spazi singoli
+    titoloNoPunt = titoloNoPunt.replace('  ', ' ')
     print(titoloNoPunt.strip().split(' '))
     return(len(titoloNoPunt.strip().split(' ')))
 
@@ -336,20 +348,20 @@ print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 
 print('1) Eseguo la funzione caricaDatiPubblicazioni: ')
-fnv = 'pubmedCoronavirus.txt'
+fnv = 'Esame-uni/Documents/Esame uni/2020_02_20/pubmedCoronavirus.txt'
 dc = caricaDatiPubblicazioni(fnv)
-if type (dc)==type({}): 
+if type(dc) == type({}):
     print('Saranno visualizzate solo i valori associati alle prime 20 chiavi')
     lKeys = list(dc.keys())
-    for el in lKeys[0:20]:     
+    for el in lKeys[0:20]:
         print(dc[el])
 else:
     print(dc)
 
 print('2) Eseguo la funzione controllaDOI: ')
 dc2 = controllaDOI(dc)
-if type(dc2)==type({}) and '32053470' in dc2:
-    print('doi:', dc2['32053470']['doi'])          
+if type(dc2) == type({}) and '32053470' in dc2:
+    print('doi:', dc2['32053470']['doi'])
 else:
     print(dc2)
 
@@ -358,7 +370,7 @@ aP = annoPubblicazioni(dc)
 print(aP)
 
 print("4) Eseguo la funzione contaParole")
-print(contaParole(dc, '32050635'))    
+print(contaParole(dc, '32050635'))
 
 print('Nome file e autore dello script eseguito')
 print(__file__)  # Questa istruzione stampa il nome dello script, ignoratela.

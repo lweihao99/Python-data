@@ -310,6 +310,7 @@ def combinazioneMaggiore(ds):
             st = str(customer)+'*'+str(id_prodotto)
             if st not in dict_a:
                 dict_a[st] = 0
+            # 如果使用else,if为true 的话那么就只会运行if里的代码,而后直接从新循环,反之要是没有else就会在运行完if之后会接着运行下面的代码,从而直接给字典里新创建的值加上quantity
             dict_a[st] += quantity
 
     max_qt = -1
