@@ -214,10 +214,10 @@ def caricaDatiPubblicazioni(fn):
     with open(fn, 'r') as streamIn:
         dPub = {'PMID': '', 'location': '', 'date': '', 'title': '', 'doi': ''}
         PMID = 'fake'
-        for riga in streamIn:
-            print(riga)
-            kind = riga[:4]
-            content = riga[5:]  # partendo da 5 si incorpora lo spazio iniziale
+        for riga in streamIn:  # 逐行读取内容,每行内容为字符串
+            # print(riga)
+            kind = riga[:4]  # 读取0-3 的字符,字符串切片
+            content = riga[5:]  # 从第5个字符开始读取倒
             if kind in lKinds:  # tipo di interesse o righe con tipo '    -'
                 if kind == 'PMID':
                     # Inserisco i dati della vecchia pubblicazione.
@@ -225,7 +225,7 @@ def caricaDatiPubblicazioni(fn):
                     # se sono all'inizio verra' inserito 'fake' come PMID (che sara' poi rimosso alla fine,
                     # altrimenti sara' utilizzato il PMID letto in precedenza
                     PMID = content.strip()  # Setto il nuovo PMID
-                    print(PMID)
+                    # print(PMID)
                     dPub = {'location': '', 'date': '', 'title': '', 'doi': ''}
                 elif kind == 'TI  ':
                     dPub['title'] += content.strip()
@@ -236,6 +236,7 @@ def caricaDatiPubblicazioni(fn):
                 elif kind == 'DP  ':
                     dPub['date'] = content.strip()
                 elif kind == 'AID ' and '[doi]' in content:
+                    # 不把最后几个字符包含进去,也就是['doi']给去掉
                     dPub['doi'] = content[:-len('[doi]') - 1].strip()
         streamIn.close()
     if PMID not in dict2ret:

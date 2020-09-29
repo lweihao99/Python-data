@@ -168,28 +168,56 @@ def caricaDatiPubblicazioni(fn):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
     file = open(fn, 'r')
     file.readline()
+    pmid = ''
+    final_dict = {}
     di = {}
     for item in file:
-        item = item.strip('\r').strip('\n')
-        content = item.split('-')
+        item = item.strip('\r').strip('\n')  # 字符串
+        row_type = item[:5]  # 取头5个字符
+        other_part = item[6:]  # 取剩下的几个字符
+        if len(item) > 0:
+            if row_type == 'PMID-':
+                pmid = other_part.strip()
+                di = {'location': '', 'date': '', 'title': '', 'doi': ''}
 
-        if content[0] == 'PMID':
-            di[content[1]] = {'location': '',
-                              'date': '', 'title': '', 'doi': ''}
+            if row_type == 'DP  -':
+                di['date'] = other_part.strip()
 
-            if content[0] == 'DP':
-                di[content[1]]['date'] =
+            if row_type == 'TI  -':
+                di['title'] = other_part.strip()
+
+            if row_type == '     ':  # 由于TI 是分两行的,第二行的开头是5个空格
+                di['title'] = di['title']+' '+other_part.strip()
+
+            if row_type == 'PL  -':
+                di['location'] = other_part.strip()
+
+            if row_type == 'AID -':
+                temp = other_part.strip()
+                if ' [doi]' in temp:
+                    di['doi'] = temp.strip(' [doi]')
+
+        else:  # 由于每个段落信息是由空格来分隔的,所以要是字符的长度 = 0, 那就说明这是个分隔线
+            final_dict[pmid] = di  # 由于这里的PMID还是一开始循环的,所以可以直接使用
+
+    return final_dict
+
+    # - La funzione controllaDOI accetta come parametri in ingresso la struttura dati
+    #   restituita dalla funzione caricaDatiPubbicazioni().
+    #   La funzione deve restituire una struttura dati identica a quella ricevuta in ingresso in cui
+    #   tutti i doi non conformi (maggiori dettagli fra poco) sono sostituiti da una stringa vuota.
+    #   Un doi è da considerarsi conforme se inizia esattamente per '10.', altrimenti è da
+    #   considerarsi non conforme.
 
 
-# - La funzione controllaDOI accetta come parametri in ingresso la struttura dati
-#   restituita dalla funzione caricaDatiPubbicazioni().
-#   La funzione deve restituire una struttura dati identica a quella ricevuta in ingresso in cui
-#   tutti i doi non conformi (maggiori dettagli fra poco) sono sostituiti da una stringa vuota.
-#   Un doi è da considerarsi conforme se inizia esattamente per '10.', altrimenti è da
-#   considerarsi non conforme.
 def controllaDOI(dPubbl):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    for item in dPubbl:
+        doi = dPubbl[item]['doi']
+        if doi[:3] == '10.':
+            return doi
+        else:
+            return ' '
 
 
 # - La funzione annoPubblicazioni accetta come parametro in ingresso la struttura dati
@@ -202,7 +230,17 @@ def controllaDOI(dPubbl):
 #   essere valori interi.
 def annoPubblicazioni(diz):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di = {}
+    for item in diz:
+        date = diz[item]['date']
+        aa = int(date[:4])
+        # new_date = date.split(' ')
+        # aa = new_date[0]
+        if aa not in di:
+            di[aa] = 1
+        else:
+            di[aa] += 1
+    return di
 
 
 # - La funzione contaParole accetta come parametri in ingresso
@@ -221,9 +259,21 @@ def annoPubblicazioni(diz):
 #   un'altra, come nell'esempio seguente
 #   st='ciao ciao'
 #   st2 = st.replace('o', 'u')) # 'ciau ciau'
+def togli_punt(fn):
+    char = ['.', ':', ';', '[', ']', '/', '\\', '"', "'", '(', ')']
+    signOut = fn
+    for item in char:
+        signOut = signOut.replace(item, '')
+    return signOut
+
+
 def contaParole(diz, ID):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    content = diz[ID]['title']
+    new_content = togli_punt(content)
+    li = new_content.split(' ')
+    print(li)
+    return len(li)
 
 
 ##########################################################
