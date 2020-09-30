@@ -221,16 +221,52 @@ def totaliVenditeCapsule(ds):
 #      Data una lista li, la posizione centrale puo' essere calcolata con int(len(li)/2)
 def clienteMediano(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di = {}
+    # 给字典添加idCliente和quantity数量总和
+    for tu in ds:
+        idCliente = tu[0]
+        if idCliente not in di:
+            di[idCliente] = 0
+        quantity = tu[3]
+        di[idCliente] += quantity
+
+    li_idCliente = []
+    # 给列表里添加idCliente,也就是字典di里的key值
+    for idCliente in di:
+        li_idCliente.append(idCliente)
+
+    # 对列表里的key值进行排序
+    for item in range(len(li_idCliente)-1):  # 遍历列表
+        maxId = item
+
+        # 进行范围错位,这样就可以进行两个不同数值的对比,也就是后一个对前一个进行对比:
+        for j in range(item+1, len(li_idCliente)):
+            if di[li_idCliente[j]] > di[li_idCliente[maxId]]:
+                maxId = j
+
+        # 临时储存变量
+        temp = li_idCliente[item]  # 将当前位置的数值临时存储
+        li_idCliente[item] = li_idCliente[maxId]  # 将得出的较大数值替换掉原来的较小的数值
+        # 将原先较小的数值(临时存储的)替换较大数值原先的位置,这时候较大数值已经替换掉了较小数值的位置
+        li_idCliente[maxId] = temp
+
+    # 找到中间值
+    posMediana = int(len(li_idCliente)/2)  # 这时候已经排序完成了
+    # 取出中间值所对应的key值
+    keyMediano = li_idCliente[posMediana]
+    # 从字典里取出对应中间值的key值所对应的quantity数量
+    tot_capsula_mediano = di[keyMediano]
+
+    return (keyMediano, tot_capsula_mediano)
 
 
-##########################################################
-# Fine del compito e della parte da editare obbligatoriamente.
-# Inizio del corpo principale del programma. Potete
-# modificare o lasciare invariato il codice qua sotto
-# (a vostra scelta), se lo modificate, accertatevi
-# che il codice non dia errori in esecuzione.
-##########################################################
+    ##########################################################
+    # Fine del compito e della parte da editare obbligatoriamente.
+    # Inizio del corpo principale del programma. Potete
+    # modificare o lasciare invariato il codice qua sotto
+    # (a vostra scelta), se lo modificate, accertatevi
+    # che il codice non dia errori in esecuzione.
+    ##########################################################
 print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 

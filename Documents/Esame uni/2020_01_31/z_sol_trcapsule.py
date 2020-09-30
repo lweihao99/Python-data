@@ -243,8 +243,9 @@ def clienteMediano(ds):
             if diCli[liIdCli[j]] > diCli[liIdCli[maxIdPos]]:
                 maxIdPos = j
         # swapping the key in position maxId with the key in position i
-        temp = liIdCli[i]
-        liIdCli[i] = liIdCli[maxIdPos]
+        temp = liIdCli[i]  # 这里暂时赋值给temp
+        liIdCli[i] = liIdCli[maxIdPos]  # 把原先的数值替换掉,以达成排序
+        # 将原先位置的数值,没有被替换掉之前的数值移动倒,替换数值的位置以保持原先的数值不被覆盖掉
         liIdCli[maxIdPos] = temp
 
     # cerco ora il mediano
