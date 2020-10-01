@@ -2,6 +2,7 @@
 # il commento sopra serve per le lettere accentate,
 # per favore non modificate queste prime righe
 import re
+from re import template
 nomeEsercizio = 'coWorking'
 
 # Vi forniamo un esempio di struttura dati che potrebbe
@@ -140,7 +141,19 @@ nome = 'Weihao'  # inserisci qua il tuo nome
 def caricaDatiCoworking(fn):
     # return datiCoworking # se non riuscite ad implementare la funzione, potete usare temporaneamente questa struttura dati
     # Implementa il codice della funzione qua sotto. La riga con il pass puo' essere cancellata.
-    pass
+    file = open(fn, 'r')
+    file.readline()
+    li = []
+    for line in file:
+        line = line.strip('\n').strip('\r')
+        item = line.split(';')
+        id_stanza = int(item[-1])
+        data = item[-2]
+        temp_li = [id_stanza, data]
+        for i in item[:-2]:
+            temp_li.append(int(i))
+        li.append(temp_li)
+    return li
 
     # - La funzione costiUtilizzo accetta come parametri in ingresso la struttura dati
     #   restituita dalla funzione caricaDatiCoworking().
@@ -152,8 +165,8 @@ def caricaDatiCoworking(fn):
     #   per l'affitto delle postazioni di lavoro, le cui prenotazioni sono contenute
     #   nella struttura dati ricevuta in ingresso.
     #   Il costo va calcolato nel modo seguente:
-    #   - una giornata nell'open space costa 2 euro (a persona)
-    #   - l'affitto di una sala piccola costa 60 euro a giornata e
+    #   - una giornata nell'open space costa 2 euro (a persona) id_stanza = 0
+    #   - l'affitto di una sala piccola costa 60 euro a giornata e ==> id_stanza > 0
     #     la cifra va divisa in parti uguali tra tutte le persone che
     #     usufruiscono in tal giorno della stanza.
     #   - Nella struttura dati restituita, per ogni utente va indicata
@@ -163,7 +176,19 @@ def caricaDatiCoworking(fn):
 
 def costiUtilizzo(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di = {}
+    for li in ds:
+        id_stanza = li[0]
+        count = 0
+        for idCliente in li[2:]:
+            if idCliente not in di:
+                di[idCliente] = 0
+            if id_stanza == 0:
+                di[idCliente] += 2
+            else:
+                num_persone = len(li)-2
+                di[idCliente] += 60/num_persone
+    return di
 
 
 # - La funzione seguente accetta come parametro in ingresso la struttura dati
@@ -190,7 +215,16 @@ def costiUtilizzo(ds):
 #   deve essere conteggiato l'utilizzo della stanza nel macrogruppo di appartenenza.
 def macroGruppi(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di = {}
+    for li in ds:
+        id_stanza = li[0]
+        for idCliente in li[2:]:
+            id_macro = idCliente % 20
+            if id_macro not in di and id_stanza > 0:
+                di[id_macro] = 1
+            if id_stanza > 0 and id_macro in di:
+                di[id_macro] += 1
+    return di
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
@@ -215,7 +249,25 @@ def macroGruppi(ds):
 #   - Nell'open space sono presenti persone di team diversi
 def composizioneTeam(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di = {}
+    for li in ds:
+        id_stanza = li[0]
+        if id_stanza > 0:
+            team_leader = 0
+            id_membro = []
+            for idCliente in li[2:]:
+                if idCliente < 20:
+                    team_leader = idCliente
+                else:
+                    id_membro.append(idCliente)
+
+            if team_leader not in di:
+                di[team_leader] = id_membro
+            else:
+                for ele in id_membro:
+                    if ele not in di[team_leader]:
+                        di[team_leader].append(ele)
+    return di
 
 
 ##########################################################
@@ -230,7 +282,7 @@ print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 
 print('1) Eseguo la funzione caricaDatiCoworking: ')
-fnv = 'Esame-uni/Documents/Esame uni/coWorking/copreno.csv'
+fnv = 'Esame-uni/Documents/Esame uni/2020-09-17/copreno.csv'
 dcw = caricaDatiCoworking(fnv)
 print(dcw)
 

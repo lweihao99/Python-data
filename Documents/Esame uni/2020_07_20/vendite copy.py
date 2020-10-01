@@ -160,9 +160,44 @@ nome = 'Weihao'  # inserisci qua il tuo nome
 #   implementare l'attuale, potete utilizzare la struttura dati dichiarata
 #   all'inizio di questo script (basta togliere il commento dalla prima riga di codice).
 def caricaDatiAbitazioni(fn):
-    # return datiImmobili # se non riuscite ad implementare la funzione, potete usare temporaneamente questa struttura dati
-    # Implementa il codice della funzione qua sotto. La riga con il pass puo' essere cancellata.
-    pass
+    #        [
+    #          ('pubblicazione', data, idAnnuncio, idAbitazione, M2, prezzoM2Proposto),
+    #          ('rimozione', data, idAnnuncio),
+    #          ('catasto', data, idProprietario, idAbitazione, M2; prezzoM2Vendita),
+    #          ...
+    #        ]
+    file = open(fn, 'r')
+    for i in range(3):
+        file.readline()
+    li = []
+    for line in file:
+        line = line.strip('\n').strip('\r')
+        content = line.split(';')
+        tipo_operazione = content[1]
+        if tipo_operazione == 'pubblicazione':
+            data = content[0]
+            id_annuncio = int(content[2])
+            id_abitazione = content[3]
+            m2 = int(content[4])
+            prezzo_m2 = int(content[5])
+            li.append((tipo_operazione, str(data), id_annuncio,
+                       id_abitazione, m2, prezzo_m2))
+
+        if tipo_operazione == 'rimozione':
+            data = content[0]
+            id_annuncio = int(content[2])
+            li.append((tipo_operazione, str(data), id_annuncio))
+
+        if tipo_operazione == 'catasto':
+            data = content[0]
+            id_proprietario = int(content[2])
+            id_abitazione = content[3]
+            m2 = int(content[4])
+            prezzo_m2 = int(content[5])
+            li.append((tipo_operazione, str(data), id_proprietario,
+                       id_abitazione, m2, prezzo_m2))
+
+    return li
 
 
 # - La funzione calcolaDurataAnnuncio accetta come parametri in ingresso la struttura dati
@@ -184,7 +219,6 @@ def caricaDatiAbitazioni(fn):
 #     in maniera analoga accade tra "catasto" e "rimozione".
 #   Per il computo dei giorni trascorsi si chiede di trasformare le date nel
 #   numero di giorni trascorsi dall'1 gen 2010, sfruttando il seguente dizionario.
-
 # Struttura dati che vi puo' essere utile
 dizGiorniMese = {'gennaio': 31, 'febbraio': 28, 'marzo': 31, 'aprile': 30,
                  'maggio': 31, 'giugno': 30, 'luglio': 31, 'agosto': 31,
@@ -196,12 +230,43 @@ dizGiorniMese = {'gennaio': 31, 'febbraio': 28, 'marzo': 31, 'aprile': 30,
 
 
 def giorno_data(fn):
-    pass
+    data = fn
+    content = data.split('_')
+    mm = int(content[1])
+    gg = int(content[2])
+    li = [0] * 12
+    temp = 0
+    i = 0
+    for mese in dizGiorniMese:
+        temp += dizGiorniMese[mese]
+        li[i] = temp
+        i += 1
+
+    giorni_tot = li[mm-1] + gg
+    return giorni_tot
 
 
 def calcolaDurataAnnuncio(ds):
     # Implementa il codice della funzione qua sotto. La riga con il pass puo' essere cancellata.
-    pass
+    di_a = {}
+    di_b = {}
+    final_di = {}
+    for tu in ds:
+        tipo_operazione = tu[0]
+        if tipo_operazione == 'pubblicazione':
+            data = tu[1]
+            id_annuncio = tu[2]
+            di_a[id_annuncio] = giorno_data(data)
+
+        if tipo_operazione == 'rimozione':
+            data = tu[1]
+            id_annuncio = tu[2]
+            di_b[id_annuncio] = giorno_data(data)
+
+    for idAnnuncio in di_a:
+        final_di[idAnnuncio] = di_b[idAnnuncio] - di_a[idAnnuncio]
+
+    return final_di
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
@@ -222,9 +287,45 @@ def calcolaDurataAnnuncio(ds):
 #   con metratura maggiore o uguale a 201 metri quadrati.
 #   I prezzi medi al metro quadrato devono essere di tipo float.
 #   Nota bene: i prezzi delle categorie non e' detto che vengano fuori in ordine crescente o decrescente
+
+
 def prezziCategorieAbitazioni(ds):
-    # Implementa il codice della funzione qua sotto. La riga con il pass puo' essere cancellata.
-    pass
+    #        {
+    #         '0_100':prezzo_medio1_metro_quadrato,
+    #         '101_200':prezzo_medio2_metro_quadrato,
+    #         '201_e_superiori':prezzo_medio3_metro_quadrato,
+    #         ...,
+    #        }
+    cat_a = '0_100'
+    cat_b = '101_200'
+    cat_c = '201_e_superiore'
+    di_num = {cat_a: 0, cat_b: 0, cat_c: 0}
+    di_prezzo = {cat_a: 0, cat_b: 0, cat_c: 0}
+    di_out = {}
+
+    for tu in ds:
+        tipo_operazione = tu[0]
+        if tipo_operazione == 'catasto':
+            m2 = tu[4]
+            if 0 <= m2 <= 100:
+                prezzo_m2 = tu[5]
+                di_num[cat_a] += m2
+                di_prezzo[cat_a] += m2 * prezzo_m2
+
+            if 101 <= m2 <= 200:
+                prezzo_m2 = tu[5]
+                di_num[cat_b] += m2
+                di_prezzo[cat_b] += m2 * prezzo_m2
+
+            if m2 > 200:
+                prezzo_m2 = tu[5]
+                di_num[cat_c] += m2
+                di_prezzo[cat_c] += m2*prezzo_m2
+
+    for key in di_prezzo:
+        di_out[key] = di_prezzo[key] / di_num[key]
+
+    return di_out
 
     # - La funzione seguente accetta come parametro in ingresso la struttura dati
     #   restituita dalla funzione caricaDatiAbitazioni().
@@ -236,7 +337,24 @@ def prezziCategorieAbitazioni(ds):
 
 def individuaAcquirente(ds):
     # Implementa il codice della funzione qua sotto. La riga con il pass puo' essere cancellata.
-    pass
+    di = {}
+    for tu in ds:
+        tipo_operazione = tu[0]
+        if tipo_operazione == 'catasto':
+            id_proprietario = tu[2]
+            if id_proprietario not in di:
+                di[id_proprietario] = 1
+            else:
+                di[id_proprietario] += 1
+
+    mobili_aquistati = 0
+    idProprietario = 0
+    for key in di:
+        if di[key] > mobili_aquistati:
+            mobili_aquistati = di[key]
+            idProprietario = key
+
+    return (idProprietario, mobili_aquistati)
 
 
 ##########################################################

@@ -281,7 +281,7 @@ print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 
 print('1) Eseguo la funzione caricaDatiCoworking: ')
-fnv = 'Esame-uni/Documents/Esame uni/coWorking/copreno.csv'
+fnv = 'Esame-uni/Documents/Esame uni/2020-09-17/copreno.csv'
 dcw = caricaDatiCoworking(fnv)
 print(dcw)
 
