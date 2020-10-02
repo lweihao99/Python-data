@@ -134,9 +134,31 @@ nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 #   implementare l'attuale, potete utilizzare la struttura dati dichiarata
 #   all'inizio di questo script (basta togliere il commento dalla prima riga di codice).
 def caricaDatiPrenotazioni(fn):
-    # return datiPrenotazioni # se non riuscite ad implementare la funzione, potete usare temporaneamente questa
-    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    #        [ (id_ristorante1, giorno1, oraInizio1, durata1, [id_cliente1, id_cliente2, ...]),
+    #          (id_ristorante2, giorno2, oraInizio2, durata2, [id_cliente5,  ...]),
+    #          ...
+    #         ]
+    file = open(fn, 'r')
+    file.readline()
+    li = []
+    for line in file:
+        line = line.strip('\n').strip('\r')
+        content = line.split(';')
+
+        idRistorante = int(content[0])
+        data = content[1]
+        new_data = data.split(':')
+        gg = int(new_data[0])
+        ora_inizio = int(new_data[1])
+        durata = int(new_data[2])
+        temp_li = []
+        for item in range(2, len(content)):
+            temp_li.append(int(content[item]))
+        li.append((idRistorante, gg, ora_inizio, durata, temp_li))
+
+    file.close()
+
+    return li
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
@@ -151,7 +173,16 @@ def caricaDatiPrenotazioni(fn):
 #   non deve essere presente nel dizionario.
 def clientiAssidui(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di = {}
+    for item in ds:
+        li_idCliente = item[4]
+        for idCliente in li_idCliente:
+            if idCliente not in di:
+                di[idCliente] = 1
+            else:
+                di[idCliente] += 1
+
+    return di
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
@@ -175,35 +206,83 @@ def clientiAssidui(ds):
 #   Sempre per vostra semplicita', i ristoranti che non hanno prenotazioni
 #   non devono essere inseriti nella struttura dati restituita.
 def numeroPrenotazioni(ds):
-    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    #        {
+    #         id_ristorante1:{'giornoA_oraX':numero_prenotazioni, 'giornoB_oraY':numero_prenotazioni, ...},
+    #         id_ristorante2:{'giornoC_oraZ':numero_prenotazioni, 'giornoD_oraK':numero_prenotazioni, ...},
+    #         ...,
+    #        }
+    di = {}
+    for tu in ds:
+        idRistorante = tu[0]
+        if idRistorante not in di:
+            di[idRistorante] = {}
+
+        giorno = tu[1]
+        ora = tu[2]
+        durata = tu[3]
+        for i in range(ora, ora+durata):
+            giorno_ora = str(giorno)+'_'+str(i)
+            if giorno_ora not in di[idRistorante]:
+                di[idRistorante][giorno_ora] = 1
+            else:
+                di[idRistorante][giorno_ora] += 1
+    return di
+
+    # - La funzione seguente accetta come parametro in ingresso la struttura dati
+    #   restituita dalla funzione caricaDatiPrenotazioni().
+    #   La funzione seguente deve individuare la coppia di utenti che più frequentemente
+    #   prenotano assieme (sul concetto di coppia, trovate alcune indicazioni aggiuntive
+    #   in fondo a questo commento).
+    #   Se ci fossero piu' coppie con lo stesso numero di prenotazioni,
+    #   sceglietene una come meglio preferite.
+    #   La funzione deve restituire la tupla seguente:
+    #      (id_cliente1, id_cliente2, n_prenotazioni_assieme)
+    #   I tre valori all'interno della tupla restituita devono essere entrambi interi.
+    #
+    #   COPPIE DI UTENTI
+    #   Le prenotazioni singole, non contano per il computo del numero di apparizione delle coppie.
+    #   Le prenotazioni con due persone, contano 1 nel conteggio delle coppie.
+    #   Nelle prenotazioni con 3 o 4 persone, vanno identificate tutte le coppie possibili
+    #   (tutte le possibili combinazioni di persone prese a due a due), es., se nella prenotazione erano presenti
+    #   4 persone (A B C D), le possibili coppie sono: AB, AC, AD, BC, BD, CD.
+    #   Ognuna di queste coppie conta 1 nel conteggio delle coppie.
+    #   L'ordine delle persone non conta nella coppia, cioè AB e BA sono la stessa coppia.
+    #   Una coppia non puo' essere formata dalla stessa persona. Per vostra semplicita',
+    #   precisiamo che nei dati delle prenotazioni contenute nel file .csv,
+    #   una persona appare al massimo una volta nella stessa prenotazione.
 
 
-# - La funzione seguente accetta come parametro in ingresso la struttura dati
-#   restituita dalla funzione caricaDatiPrenotazioni().
-#   La funzione seguente deve individuare la coppia di utenti che più frequentemente
-#   prenotano assieme (sul concetto di coppia, trovate alcune indicazioni aggiuntive
-#   in fondo a questo commento).
-#   Se ci fossero piu' coppie con lo stesso numero di prenotazioni,
-#   sceglietene una come meglio preferite.
-#   La funzione deve restituire la tupla seguente:
-#      (id_cliente1, id_cliente2, n_prenotazioni_assieme)
-#   I tre valori all'interno della tupla restituita devono essere entrambi interi.
-#
-#   COPPIE DI UTENTI
-#   Le prenotazioni singole, non contano per il computo del numero di apparizione delle coppie.
-#   Le prenotazioni con due persone, contano 1 nel conteggio delle coppie.
-#   Nelle prenotazioni con 3 o 4 persone, vanno identificate tutte le coppie possibili
-#   (tutte le possibili combinazioni di persone prese a due a due), es., se nella prenotazione erano presenti
-#   4 persone (A B C D), le possibili coppie sono: AB, AC, AD, BC, BD, CD.
-#   Ognuna di queste coppie conta 1 nel conteggio delle coppie.
-#   L'ordine delle persone non conta nella coppia, cioè AB e BA sono la stessa coppia.
-#   Una coppia non puo' essere formata dalla stessa persona. Per vostra semplicita',
-#   precisiamo che nei dati delle prenotazioni contenute nel file .csv,
-#   una persona appare al massimo una volta nella stessa prenotazione.
 def coppieFrequenti(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di = {}
+    for tu in ds:
+        idCliente = tu[4]
+        i = 0
+        while i < len(idCliente):
+            j = i+1
+            # per avere tutte le coppie possibili 1,2 1,3 1,4 2,3 2,4....
+            while j < len(idCliente):
+                if idCliente[i] < idCliente[j]:
+                    k = (idCliente[i], idCliente[j])
+                else:
+                    k = (idCliente[j], idCliente[i])
+
+                if k not in di:  # 每个组合判断一遍有没有在字典里
+                    di[k] = 1
+                else:
+                    di[k] += 1
+                j += 1
+            i += 1
+    maxPair = -1
+    maxPair2 = -1
+    numPrenotazione = -1
+    for key in di:
+        if di[key] > numPrenotazione:
+            numPrenotazione = di[key]
+            maxPair = key[0]
+            maxPair2 = key[1]
+
+    return ((int(maxPair), int(maxPair2)), numPrenotazione)
 
 
 ##########################################################
@@ -213,12 +292,11 @@ def coppieFrequenti(ds):
 # (a vostra scelta), se lo modificate, accertatevi
 # che il codice non dia errori in esecuzione.
 ##########################################################
-
 print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 
 print('1) Eseguo la funzione caricaDatiPrenotazioni: ')
-fnv = 'prenotazioni.csv'
+fnv = 'Esame-uni/Documents/Esame uni/2020_07_01/prenotazioni.csv'
 dpr = caricaDatiPrenotazioni(fnv)
 print(dpr)
 
