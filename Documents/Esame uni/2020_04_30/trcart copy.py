@@ -167,8 +167,8 @@ composizioneCarrelli = [(24, {43: 7}), (17, {18: 3, 5: 8, 6: 4}), (14, {40: 3, 5
 # Assunzioni in evidente violazione delle richieste qua sotto non saranno
 # considerate valide.
 
-cognome = 'Sostituiscimi con il cognome'  # inserisci qua il tuo cognome
-nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
+cognome = 'Liu'  # inserisci qua il tuo cognome
+nome = 'Weihao'  # inserisci qua il tuo nome
 
 
 # - La funzione seguente accetta come parametro in ingresso
@@ -198,9 +198,39 @@ nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 #   codice).
 #
 def caricaDatiCarrelli(fn):
-    # return datiCarrelli # se non riuscite ad implementare la funzione, potete usare temporaneamente questa struttura dati. Tuttavia se lo fate la funzione sarà considerata non svolta.
-    # Implementa il codice della funzione qua sotto. Questa riga può essere cancellata.
-    pass
+    #        [ (id_cliente1, 'ADD', id_prodottoA, qtA),
+    #          ...
+    #          (id_cliente2, 'DROP', id_prodottoB, qtB),
+    #          ...
+    #          (id_cliente3, 'CHECKOUT'),
+    #          ...
+    #         ]
+    #   In id_cliente, id_prodotto e qt vanno inseriti valori di tipo intero,
+    #   'ADD', 'DROP' e 'CHECKOUT' devono essere di tipo stringa.
+    file = open(fn, 'r')
+    file.readline()
+    li = []
+    for line in file:
+        line = line.strip('\r').strip('\n')
+        content = line.split(';')
+        operation = content[2]
+        if operation == 'ADD':
+            idCliente = content[1]
+            idProdotto = content[3]
+            qt = content[4]
+            li.append((int(idCliente), operation, int(idProdotto), int(qt)))
+
+        if operation == 'DROP':
+            idCliente = content[1]
+            idProdotto = content[3]
+            qt = content[4]
+            li.append((int(idCliente), operation, int(idProdotto), int(qt)))
+
+        if operation == 'CHECKOUT':
+            idCliente = content[1]
+            li.append((int(idCliente), operation))
+
+    return li
 
 
 # - La funzione seguente accetta come parametri in ingresso la struttura dati
@@ -224,9 +254,37 @@ def caricaDatiCarrelli(fn):
 #   checkout.
 #
 def calcolaComposizione(ds):
-    # return composizioneCarrelli # se non riuscite ad implementare la funzione, potete usare temporaneamente questa struttura dati. Tuttavia se lo fate la funzione sarà considerata non svolta.
-    # Implementa il codice della funzione qua sotto. Questa riga può essere cancellata.
-    pass
+    li = []
+    di = {}
+    for tu in ds:
+        idCliente = tu[0]
+        operation = tu[1]
+        if idCliente not in di:
+            di[idCliente] = {}
+
+        if operation == 'ADD':
+            idProdotto = tu[2]
+            qt = tu[3]
+            if idProdotto not in di[idCliente]:
+                di[idCliente][idProdotto] = 0
+            di[idCliente][idProdotto] += qt
+
+        if operation == 'DROP':
+            idProdotto = tu[2]
+            qt = tu[3]
+            di[idCliente][idProdotto] -= qt
+
+        if operation == 'CHECKOUT':  # qt pari a 0 non deve apparire
+            temp_di = {}
+            for idProdotto in di[idCliente]:
+                qt = di[idCliente][idProdotto]
+                if qt != 0:
+                    temp_di[idProdotto] = qt
+            li.append((idCliente, temp_di))
+            # svuoto il dizionario per il prossimo ciclo
+            di[idCliente] = {}
+
+    return li
 
 
 # - La funzione seguente accetta come parametro in ingresso la struttura dati
@@ -248,8 +306,25 @@ def calcolaComposizione(ds):
 #   criterio che preferite.
 #
 def combinazioneMaggiore(ds):
-    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di = {}
+    for tu in ds:
+        idCliente = tu[0]
+        diz = tu[1]
+        for idProdotto in diz:
+            qt = diz[idProdotto]
+            comp = str(idCliente)+'*'+str(idProdotto)
+            if comp not in di:
+                di[comp] = 0
+            di[comp] += qt
+
+    maxIdProdotto = ''
+    maxQt = -1
+    for key in di:
+        if di[key] > maxQt:
+            maxQt = di[key]
+            maxIdProdotto = key
+
+    return (maxIdProdotto, maxQt)
 
 
 ##########################################################
