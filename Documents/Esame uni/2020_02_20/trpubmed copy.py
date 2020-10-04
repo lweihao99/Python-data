@@ -164,9 +164,42 @@ nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 # implementare l'attuale, potete utilizzare la struttura dati dichiarata
 # all'inizio di questo script (basta togliere il commento dalla prima riga di codice).
 def caricaDatiPubblicazioni(fn):
-    # return dLavori # se non riuscite ad implementare la funzione, potete usare temporaneamente questa
-    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    #   {   'PMID_1': {'location': nazione_1, 'date': data_1, 'title': titolo_1, 'doi': doi_1},
+    #       'PMID_2': {'location': nazione_2, 'date': data_2, 'title': titolo_2, 'doi': doi_2},
+    #           ...
+    #       'PMID_n': {'location': nazione_n, 'date': data_n, 'title': titolo_n, 'doi': doi_n}
+    #   }
+    file = open(fn, 'r')
+    file.readline()
+    di = {}
+    pmid = ''
+    for line in file:
+        line = line.strip('\n').strip('\r')
+        type_ = line[:4]
+        content = line[5:]
+        if len(line) > 0:
+            if type_ == 'PMID':
+                pmid = content.strip()
+                di[pmid] = {'location': '', 'date': '', 'title': '', 'doi': ''}
+
+            if type_ == 'DP  ':
+                di[pmid]['date'] = content.strip()
+
+            if type_ == 'TI  ':
+                di[pmid]['title'] = content.strip()
+
+            if type_ == '    ':
+                di[pmid]['title'] = di[pmid]['title'] + content.strip()
+
+            if type_ == 'PL  ':
+                di[pmid]['location'] = content.strip()
+
+            if type_ == 'AID ':
+                aid = content
+                if '[doi]' in aid:
+                    di[pmid]['doi'] = content.strip(' [doi]')
+
+    return di
 
     # - La funzione controllaDOI accetta come parametri in ingresso la struttura dati
     #   restituita dalla funzione caricaDatiPubbicazioni().
@@ -178,7 +211,12 @@ def caricaDatiPubblicazioni(fn):
 
 def controllaDOI(dPubbl):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    for pmid in dPubbl:
+        aid = dPubbl[pmid]['doi']
+        if aid[:3] == '10.':
+            return aid
+        else:
+            return 'non conforme'
 
 
 # - La funzione annoPubblicazioni accetta come parametro in ingresso la struttura dati
@@ -191,7 +229,16 @@ def controllaDOI(dPubbl):
 #   essere valori interi.
 def annoPubblicazioni(diz):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di = {}
+    for pmid in diz:
+        date = diz[pmid]['date']
+        date = date.split(' ')
+        aa = date[0]
+        if aa not in di:
+            di[aa] = 1
+        else:
+            di[aa] += 1
+    return di
 
 
 # - La funzione contaParole accetta come parametri in ingresso
@@ -211,12 +258,21 @@ def annoPubblicazioni(diz):
 #   st='ciao ciao'
 #   st2 = st.replace('o', 'u')) # 'ciau ciau'
 def togli_punt(fn):
-    pass
+    signIn = fn
+    punti = ['.', ',', ':', ';', '"', "'", '[', ']',
+             '{', '}', '...', '(', ')', '?', '!', '_', '-']
+    signOut = ''
+    for i in punti:
+        signOut = signIn.replace(i, '')
+    return signOut
 
 
 def contaParole(diz, ID):
-    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    content = diz[ID]['title']
+    new_content = togli_punt(content)
+    new_content = new_content.split(' ')
+    print(len(new_content))
+    return new_content
 
 
 ##########################################################
