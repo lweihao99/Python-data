@@ -153,11 +153,13 @@ def caricaDatiCapsule(fn):
         content = line.split(';')
         idCliente = int(content[0])
         date = content[1]
-        tipoCapsula = content[2]
-        quantity = int(content[-2])
-        prezzoUni = float(content[-1])
-        li.append((idCliente, date, tipoCapsula, quantity, prezzoUni))
-
+        i = 2
+        while i < len(content):
+            tipoCapsula = content[i]
+            quantity = int(content[i+1])
+            prezzoUni = float(content[i+2])
+            li.append((idCliente, date, tipoCapsula, quantity, prezzoUni))
+            i += 3
     return li
 
 
@@ -177,8 +179,24 @@ def caricaDatiCapsule(fn):
 #   Deve essere presente un'unica coppia chiave valore nel dizionario
 #   per ogni tipo diverso di capsula.
 def totaliVenditeCapsule(ds):
-    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di_quantity = {}
+    di_incasso = {}
+    di = {}
+    for tu in ds:
+        tipoCapsula = tu[2]
+        quantity = tu[3]
+        prezzoUni = tu[4]
+        if tipoCapsula not in di_quantity and tipoCapsula not in di_incasso:
+            di_quantity[tipoCapsula] = 0
+            di_incasso[tipoCapsula] = 0
+        di_quantity[tipoCapsula] += quantity
+        di_incasso[tipoCapsula] += quantity * prezzoUni
+
+    for tipoCapsula in di_quantity:
+        if tipoCapsula not in di:
+            di[tipoCapsula] = [di_quantity[tipoCapsula], di_incasso[tipoCapsula]]
+
+    return di
 
 
 # - La funzione seguente accetta come parametro in ingresso la struttura dati
@@ -219,7 +237,7 @@ print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 
 print('1) Eseguo la funzione caricaDatiCapsule: ')
-fnv = 'capsule.csv'
+fnv = 'Esame-uni/Documents/Esame uni/2020_01_31/capsule.csv'
 dc = caricaDatiCapsule(fnv)
 print(dc)
 
