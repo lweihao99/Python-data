@@ -236,7 +236,7 @@ def clienteMediano(ds):
         li_idCliente.append(idCliente)
 
     # 对列表里的key值进行排序
-    for item in range(len(li_idCliente)-1):  # 遍历列表
+    for item in range(len(li_idCliente)-1):  # 范围数字
         maxId = item
 
         # 进行范围错位,这样就可以进行两个不同数值的对比,也就是后一个对前一个进行对比:

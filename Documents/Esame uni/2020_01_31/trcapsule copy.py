@@ -223,16 +223,44 @@ def totaliVenditeCapsule(ds):
 #      Data una lista li, la posizione centrale puo' essere calcolata con int(len(li)/2)
 def clienteMediano(ds):
     # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    pass
+    di_quantity = {}
+    li_idCliente = []
+    for tu in ds:
+        idCliente = tu[0]
+        quantity = tu[3]
+        if idCliente not in di_quantity:
+            di_quantity[idCliente] = 0
+        di_quantity[idCliente] += quantity
+
+    for idCliente in di_quantity:
+        li_idCliente.append(idCliente)
+
+    for number in range(len(li_idCliente)-1):  # 遍历范围数字
+        maxIndex = number
+
+        for sNumber in range(len(li_idCliente)):  # 进行前后对比
+            # 对各自的idCliente quantita capsule aquistate进行对比
+            if di_quantity[li_idCliente[number]] < di_quantity[li_idCliente[sNumber]]:
+                maxIndex = sNumber
+
+        temp = li_idCliente[number]
+        li_idCliente[number] = li_idCliente[maxIndex]
+        li_idCliente[maxIndex] = temp
+
+    mediana = int(len(li_idCliente)/2)
+    idClienteMediano = li_idCliente[mediana]
+    medQuantity = di_quantity[idClienteMediano]
+
+    return (idClienteMediano, medQuantity)
 
 
-##########################################################
-# Fine del compito e della parte da editare obbligatoriamente.
-# Inizio del corpo principale del programma. Potete
-# modificare o lasciare invariato il codice qua sotto
-# (a vostra scelta), se lo modificate, accertatevi
-# che il codice non dia errori in esecuzione.
-##########################################################
+    ##########################################################
+    # Fine del compito e della parte da editare obbligatoriamente.
+    # Inizio del corpo principale del programma. Potete
+    # modificare o lasciare invariato il codice qua sotto
+    # (a vostra scelta), se lo modificate, accertatevi
+    # che il codice non dia errori in esecuzione.
+    ##########################################################
 print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao nome: %s, cognome: %s.' % (nome, cognome))
 
