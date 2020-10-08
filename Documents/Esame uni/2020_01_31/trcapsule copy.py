@@ -249,6 +249,7 @@ def clienteMediano(ds):
 
     mediana = int(len(li_idCliente)/2)
     idClienteMediano = li_idCliente[mediana]
+
     medQuantity = di_quantity[idClienteMediano]
 
     return (idClienteMediano, medQuantity)
