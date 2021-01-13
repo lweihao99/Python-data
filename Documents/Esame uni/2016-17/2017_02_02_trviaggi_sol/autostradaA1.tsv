@@ -1,0 +1,70 @@
+#http://www.autostrade.it/autostrade-gis/rete.do?op=caselli&cod=A01
+#Progressiva Km	Nome casello	Codice casello
+7.7	Melegnano	37
+8.9	Milano Sud	1
+22.3	Lodi	2
+37.8	Casalpusterlengo	3
+49.7	Piacenza Nord	4
+74.0	Fiorenzuola	6
+90.4	Fidenza	7
+110.4	Parma	8
+124.4	Terre di canossa - Campegine	91
+137.1	Reggio Emilia	9
+157.6	Modena Nord	10
+170.8	Modena Sud	11
+184.789	Valsamoggia	96
+209.8	Sasso Marconi	14
+222.7	Rioveggio	15
+237.2	Pian del Voglio	16
+242.3	Roncobilaccio	17
+261.5	Barberino di Mugello	18
+278.1	Calenzano-Sesto Fiorentino	19
+279.9	Firenze Nord	20
+286.9	Firenze Scandicci	21
+295.5	Firenze Impruneta	22
+300.9	Firenze Sud	23
+319.9	Incisa - Reggello	24
+335.8	Valdarno	25
+358.5	Arezzo	26
+371.6	Monte San Savino	27
+385.4	Valdichiana	28
+409.9	Chiusi-Chianciano Terme	29
+427.8	Fabro	30
+451.4	Orvieto	31
+479.5	Attigliano	32
+491.3	Orte	33
+500.9	Magliano Sabina	34
+516.0	PONZANO ROMANO-SORATTE	90
+555.469	Guidonia Montecelio	93
+586.9	VALMONTONE	705
+592.9	COLLEFERRO	706
+603.9	ANAGNI-FIUGGI	707
+618.2	Ferentino	786
+624.2	Frosinone	708
+642.0	Ceprano	709
+658.3	Pontecorvo	710
+669.6	Cassino	711
+678.6	San Vittore	712
+700.8	Caianello	713
+719.8	Capua	714
+728.6	Santa Maria Capua Vetere	776
+733.7	Caserta Nord	715
+739.7	Napoli Nord	779
+740.6	Caserta Sud	716
+#A1 Diramazione Roma nord - GRA
+3.6	Roma Nord	36
+4.0	FIANO ROMANO	35
+9.5	Castelnuovo di Porto	92
+#A1 Diramazione Roma sud - GRA
+5.0	San Cesareo	704
+10.2	Monteporzio	703
+14.9	ROMA SUD	702
+#Raccordo A1-Caserta sud
+739.7	Caserta Centro	778
+#Raccordo Piacenza Sud- A21
+58.2	Piacenza Sud	5
+#VARIANTE DI VALICO
+17.425	BADIA	94
+28.087	FIRENZUOLA	95
+#RACCORDO A1 - VARIANTE VALICO
+261.5	Barberino di Mugello	18

@@ -1,0 +1,5 @@
+#http://www.autostrade.it/it/il-pedaggio/come-si-calcola-il-pedaggio#tariffe
+#TARIFFE UNITARIE DI AUTOSTRADE PER L'ITALIA €/KM (ANNO 2017)
+#Classi di Veicolo	A	B	3	4	5
+Pianura	€/Km	0.07135	0.07302	0.09749	0.14677	0.17302
+Montagna	€/Km	0.08431	0.08629	0.11278	0.17200	0.20354

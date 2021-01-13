@@ -1,0 +1,449 @@
+Giorno;IdCliente;prezzo in euro;Alimento/bevanda
+1;14;9;Pasta Matriciana
+1;14;8;Arrosto di vitello
+1;14;11;verdure alla griglia
+1;14;2;vino
+1;14;3;frutta
+1;12;8;Pasta alla norma
+1;12;13;Parmigiana di melanzane
+1;12;2;vino
+1;12;2;dolce
+1;3;3;Brasato
+1;3;2;vino
+1;3;4;frutta
+1;17;8;Pollo arrosto
+1;17;8;verdure bollite
+1;17;4;bibite
+1;17;3;dolce
+1;13;8;patatine fritte
+1;13;2;vino
+1;13;3;dolce
+2;8;4;Lasagne
+2;8;7;Pollo arrosto
+2;8;2;frutta
+2;7;7;Pasta alla norma
+2;7;3;Brasato
+2;7;6;patatine fritte
+2;7;2;frutta
+2;3;8;patatine fritte
+2;3;3;frutta
+2;17;9;verdure bollite
+2;17;2;bibite
+2;4;5;Fritto misto
+2;4;3;acqua
+2;4;4;frutta
+3;20;13;Spaghetti allo scoglio
+3;20;7;Pollo arrosto
+3;20;12;verdure alla griglia
+3;9;4;Tortellini
+3;9;5;insalata
+3;9;2;vino
+3;17;6;Fritto misto
+3;17;8;verdure bollite
+3;17;3;acqua
+3;17;3;frutta
+3;10;3;Brasato
+3;5;6;Pollo arrosto
+3;5;2;frutta
+4;5;6;Fritto misto
+4;5;9;verdure bollite
+4;5;2;bibite
+4;5;2;frutta
+4;16;8;Pasta al pesto
+4;19;3;Lasagne
+4;19;8;Carpaccio di tonno
+4;7;4;Tortellini
+4;7;7;Fritto misto
+4;7;7;patatine fritte
+4;7;2;bibite
+4;10;12;Spaghetti allo scoglio
+4;10;2;vino
+4;10;2;frutta
+5;13;3;acqua
+5;13;3;dolce
+5;11;4;Risotto
+5;11;7;Arrosto di vitello
+5;11;3;frutta
+5;18;3;bibite
+5;18;3;dolce
+5;10;8;Pasta al pesto
+5;10;6;Pollo arrosto
+5;10;2;vino
+5;10;4;frutta
+5;9;4;Lasagne
+5;9;7;Fritto misto
+5;9;3;acqua
+5;9;3;frutta
+6;2;3;bibite
+6;2;2;dolce
+6;9;10;Pasta alla norma
+6;9;9;Carpaccio di tonno
+6;9;2;vino
+6;9;3;dolce
+6;15;10;Spaghetti allo scoglio
+6;15;8;patatine fritte
+6;15;2;vino
+6;19;13;Parmigiana di melanzane
+6;19;3;frutta
+6;17;3;frutta
+1;14;13;Spaghetti allo scoglio
+1;14;5;Fritto misto
+1;14;2;vino
+1;14;3;frutta
+1;9;13;Spaghetti allo scoglio
+1;9;3;bibite
+1;11;9;Spaghetti allo scoglio
+1;11;3;Brasato
+1;11;3;insalata
+1;11;3;bibite
+1;11;3;dolce
+1;10;11;Arrosto di vitello
+1;10;8;verdure bollite
+1;7;3;Risotto
+1;7;7;Pollo arrosto
+1;7;10;verdure alla griglia
+2;7;7;patatine fritte
+2;7;2;bibite
+2;7;3;dolce
+2;9;4;Brasato
+2;9;9;verdure bollite
+2;9;2;dolce
+2;13;4;Risotto
+2;13;3;Brasato
+2;13;7;verdure bollite
+2;13;2;vino
+2;8;2;vino
+2;8;3;dolce
+2;16;8;Pasta alla norma
+2;16;5;Fritto misto
+2;16;3;dolce
+3;5;4;Lasagne
+3;5;7;Pollo arrosto
+3;5;4;insalata
+3;5;2;vino
+3;20;14;Parmigiana di melanzane
+3;20;5;insalata
+3;20;3;dolce
+3;9;8;Pasta Matriciana
+3;9;4;Brasato
+3;9;12;verdure alla griglia
+3;1;5;Tortellini
+3;1;4;Brasato
+3;1;7;patatine fritte
+3;1;2;acqua
+3;18;9;verdure alla griglia
+3;18;3;bibite
+3;18;2;dolce
+4;5;12;Spaghetti allo scoglio
+4;5;9;Parmigiana di melanzane
+4;5;3;bibite
+4;5;3;dolce
+4;17;4;Lasagne
+4;17;11;verdure alla griglia
+4;17;2;frutta
+4;2;9;Spaghetti allo scoglio
+4;2;4;insalata
+4;1;3;acqua
+4;1;3;frutta
+4;4;3;acqua
+4;4;3;dolce
+5;17;5;insalata
+5;17;2;vino
+5;17;3;frutta
+5;18;3;acqua
+5;18;2;dolce
+5;1;5;Pollo arrosto
+5;6;11;Arrosto di vitello
+5;6;8;verdure bollite
+5;6;2;vino
+5;19;4;Lasagne
+5;19;9;patatine fritte
+5;19;3;acqua
+5;19;3;frutta
+6;19;7;Carpaccio di tonno
+6;19;8;verdure bollite
+6;19;3;frutta
+6;16;4;insalata
+6;16;2;vino
+6;18;8;Pollo arrosto
+6;18;9;patatine fritte
+6;18;2;acqua
+6;18;3;dolce
+6;17;11;verdure alla griglia
+6;17;2;bibite
+6;17;3;frutta
+6;4;10;Pasta alla norma
+6;4;2;vino
+1;2;7;Pollo arrosto
+1;2;4;insalata
+1;2;2;bibite
+1;2;3;frutta
+1;4;11;Spaghetti allo scoglio
+1;4;4;Brasato
+1;4;12;verdure alla griglia
+1;4;3;frutta
+1;16;9;Pasta alla norma
+1;16;8;Carpaccio di tonno
+1;16;3;bibite
+1;16;3;dolce
+1;13;4;Risotto
+1;13;8;Arrosto di vitello
+1;13;2;acqua
+1;18;4;insalata
+1;18;3;acqua
+1;18;2;frutta
+2;2;7;verdure bollite
+2;2;3;frutta
+2;6;6;Fritto misto
+2;6;8;verdure bollite
+2;6;2;vino
+2;6;2;dolce
+2;17;6;Pasta al pesto
+2;17;7;Arrosto di vitello
+2;17;9;verdure alla griglia
+2;17;2;vino
+2;16;8;Arrosto di vitello
+2;16;8;verdure alla griglia
+2;16;3;frutta
+2;19;10;Spaghetti allo scoglio
+2;19;7;Carpaccio di tonno
+2;19;7;patatine fritte
+2;19;4;frutta
+3;10;7;Pollo arrosto
+3;10;3;frutta
+3;15;4;insalata
+3;15;3;acqua
+3;7;5;Fritto misto
+3;7;2;acqua
+3;20;11;Arrosto di vitello
+3;20;2;acqua
+3;20;3;frutta
+3;9;2;vino
+3;9;2;dolce
+4;15;5;insalata
+4;15;2;vino
+4;14;4;Tortellini
+4;14;8;Arrosto di vitello
+4;14;3;dolce
+4;8;7;Arrosto di vitello
+4;8;8;verdure bollite
+4;8;3;bibite
+4;8;3;frutta
+4;13;2;dolce
+4;7;7;Pasta Matriciana
+4;7;5;Fritto misto
+4;7;6;patatine fritte
+4;7;3;acqua
+4;7;3;frutta
+5;16;4;Lasagne
+5;16;10;Parmigiana di melanzane
+5;16;8;patatine fritte
+5;16;3;dolce
+5;20;2;vino
+5;20;4;frutta
+5;12;6;Tortellini
+5;12;2;frutta
+5;4;9;Pasta alla norma
+5;4;5;Pollo arrosto
+5;4;9;patatine fritte
+5;4;3;bibite
+5;4;3;frutta
+6;20;11;Spaghetti allo scoglio
+6;20;5;insalata
+6;10;6;Fritto misto
+6;10;6;patatine fritte
+6;10;3;acqua
+6;5;7;Fritto misto
+6;5;2;vino
+6;5;3;frutta
+6;12;5;Tortellini
+6;12;10;Parmigiana di melanzane
+6;12;4;insalata
+6;12;3;dolce
+6;8;3;bibite
+6;8;2;dolce
+1;2;7;Pasta alla norma
+1;2;3;acqua
+1;2;3;frutta
+1;17;9;Pasta Matriciana
+1;17;3;frutta
+1;5;5;Tortellini
+1;5;9;Carpaccio di tonno
+1;5;3;bibite
+1;5;3;frutta
+1;4;8;Pasta alla norma
+1;4;7;Carpaccio di tonno
+1;4;10;verdure alla griglia
+1;4;2;dolce
+1;12;7;Arrosto di vitello
+2;12;10;Pasta Matriciana
+2;12;4;Brasato
+2;12;4;insalata
+2;12;3;bibite
+2;12;2;dolce
+2;19;10;Pasta Matriciana
+2;19;3;dolce
+2;18;9;Pasta alla norma
+2;18;2;vino
+2;6;4;Risotto
+2;6;4;insalata
+2;6;2;vino
+2;10;4;Lasagne
+2;10;12;Parmigiana di melanzane
+2;10;4;insalata
+2;10;2;acqua
+3;3;8;Pasta alla norma
+3;3;7;Arrosto di vitello
+3;3;3;frutta
+3;8;10;Carpaccio di tonno
+3;8;3;bibite
+3;8;3;frutta
+3;2;5;Fritto misto
+3;2;4;insalata
+3;2;2;vino
+3;7;4;Brasato
+3;7;3;frutta
+3;12;8;Pasta Matriciana
+3;12;10;Parmigiana di melanzane
+3;12;7;patatine fritte
+3;12;3;bibite
+3;12;3;frutta
+4;1;3;Brasato
+4;1;8;verdure bollite
+4;2;2;vino
+4;2;2;frutta
+4;9;5;Pollo arrosto
+4;9;4;insalata
+4;9;2;frutta
+4;17;7;Pasta Matriciana
+4;17;8;Carpaccio di tonno
+4;17;3;bibite
+4;17;3;frutta
+4;13;8;Pasta al pesto
+4;13;4;Brasato
+4;13;3;bibite
+4;13;4;frutta
+5;14;3;Risotto
+5;14;6;Fritto misto
+5;15;7;Arrosto di vitello
+5;15;12;verdure alla griglia
+5;15;2;bibite
+5;15;4;frutta
+5;5;4;Brasato
+5;5;3;dolce
+5;18;12;Parmigiana di melanzane
+5;18;2;vino
+5;18;4;frutta
+5;2;3;acqua
+5;2;3;frutta
+6;18;10;verdure alla griglia
+6;2;8;Pasta alla norma
+6;2;8;Pollo arrosto
+6;2;2;vino
+6;2;3;frutta
+6;10;11;Carpaccio di tonno
+6;10;8;patatine fritte
+6;10;2;vino
+6;7;4;Risotto
+6;7;5;Fritto misto
+6;7;12;verdure alla griglia
+6;7;3;acqua
+6;7;3;frutta
+6;13;13;Spaghetti allo scoglio
+6;13;9;verdure alla griglia
+6;13;2;vino
+6;13;2;dolce
+1;2;10;Pasta Matriciana
+1;17;6;Fritto misto
+1;17;3;dolce
+1;20;11;Spaghetti allo scoglio
+1;20;3;acqua
+1;20;3;dolce
+1;18;4;Lasagne
+1;18;14;Parmigiana di melanzane
+1;18;7;patatine fritte
+1;18;2;dolce
+1;6;9;Spaghetti allo scoglio
+1;6;11;Carpaccio di tonno
+2;9;10;Spaghetti allo scoglio
+2;9;4;Brasato
+2;9;3;bibite
+2;9;2;dolce
+2;17;8;patatine fritte
+2;17;2;dolce
+2;18;3;acqua
+2;18;3;dolce
+2;12;6;Fritto misto
+2;12;12;verdure alla griglia
+2;12;3;acqua
+2;12;3;dolce
+2;16;8;Pasta Matriciana
+2;16;6;verdure bollite
+2;16;2;frutta
+3;2;5;Fritto misto
+3;2;4;insalata
+3;2;3;dolce
+3;20;4;Risotto
+3;20;10;Parmigiana di melanzane
+3;20;6;verdure bollite
+3;20;2;vino
+3;14;3;Lasagne
+3;14;7;Fritto misto
+3;14;6;patatine fritte
+3;8;3;dolce
+3;12;5;Tortellini
+3;12;10;verdure alla griglia
+3;12;3;bibite
+3;12;2;dolce
+4;9;10;Pasta alla norma
+4;9;9;Parmigiana di melanzane
+4;9;3;acqua
+4;9;2;dolce
+4;3;6;Pasta Matriciana
+4;3;13;Parmigiana di melanzane
+4;3;7;verdure bollite
+4;3;2;vino
+4;3;3;frutta
+4;15;2;vino
+4;15;3;frutta
+4;16;10;Pasta alla norma
+4;16;7;Fritto misto
+4;16;4;insalata
+4;16;3;dolce
+4;8;8;Pasta al pesto
+4;8;10;Parmigiana di melanzane
+5;5;6;patatine fritte
+5;5;2;bibite
+5;10;7;Pasta al pesto
+5;10;7;Fritto misto
+5;10;3;insalata
+5;10;3;acqua
+5;10;3;frutta
+5;6;10;Parmigiana di melanzane
+5;6;11;verdure alla griglia
+5;6;2;acqua
+5;6;3;dolce
+5;18;11;Arrosto di vitello
+5;18;8;verdure bollite
+5;18;2;frutta
+5;15;6;Pasta alla norma
+5;15;9;patatine fritte
+5;15;3;frutta
+6;19;5;Pollo arrosto
+6;19;11;verdure alla griglia
+6;19;2;dolce
+6;7;11;Spaghetti allo scoglio
+6;7;12;verdure alla griglia
+6;7;3;bibite
+6;7;4;frutta
+6;16;4;insalata
+6;16;3;bibite
+6;1;4;Risotto
+6;1;7;patatine fritte
+6;1;2;vino
+6;1;4;frutta
+6;8;4;Risotto
+6;8;5;Fritto misto
+6;8;8;patatine fritte
+6;8;2;vino
+6;8;3;dolce
