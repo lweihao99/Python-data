@@ -62,9 +62,8 @@ nomeEsercizio = 'Turbine'
 # INIZIO DELLA PARTE DA EDITARE
 ##########################################################
 
-cognome='Sostituiscimi con il cognome' # inserisci qua il tuo cognome
-nome='Sostituiscimi con il nome' # inserisci qua il tuo nome
-
+cognome = 'Sostituiscimi con il cognome'  # inserisci qua il tuo cognome
+nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 
 
 # - La funzione seguente accetta come unico parametro in
@@ -75,8 +74,18 @@ nome='Sostituiscimi con il nome' # inserisci qua il tuo nome
 #   dove id_turbina e' di tipo intero, mentre rottura e' una stringa che puo'
 #   assumere il valore 'S' o 'N'.
 def leggiRotture(filename):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.\
+    di = {}
+    file = open(filename, 'r')
+    file.readline()
+    for line in file:
+        line = line.strip('\n').strip('\r')
+        content = line.split(';')
+        iD = int(content[0])
+        rottura = content[1]
+        di[iD] = rottura
+    file.close()
+    return di
 
 
 # - La funzione seguente accetta come unico parametro in
@@ -87,7 +96,7 @@ def leggiRotture(filename):
 #         { id_turbina1:(lista_flow, lista_rpm, lista_hz),
 #         { id_turbina2:(...),
 #         ... }
-#   dove id_turbina e' una chiave associata ad una tupla e 
+#   dove id_turbina e' una chiave associata ad una tupla e
 #   la tupla è composta a suo volta da tre liste
 #   * lista_flow contiene le rilevazioni dei flow,
 #   * lista_rpm contiene le rilevazioni degli rpm,
@@ -95,8 +104,32 @@ def leggiRotture(filename):
 #   Le rilevazioni fatte nella prima ora occupano i primi elementi delle tre liste,
 #   le rilevazioni fatte nella seconda ora occupano le seconde posizioni delle liste, ...
 def leggiRilevazioni(filename):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    diz = {}
+    file = open(filename, 'r')
+    file.readline()
+    for line in file:
+        line = line.strip('\n').strip('\r')
+        content = line.split(';')
+        iD = content[0]
+        temp = 2
+        li_flow = []
+        li_rpm = []
+        li_hz = []
 
+        while temp < len(content):
+            flow = int(content[temp])
+            rpm = int(content[temp+1])
+            hz = int(content[temp+2])
+            li_flow.append(flow)
+            li_rpm.append(rpm)
+            li_hz.append(hz)
+            temp += 3
+
+        diz[iD] = (li_flow, li_rpm, li_hz)
+
+    file.close()
+    return diz
 
 
 # - La funzione seguente restituisce una lista contenente
@@ -123,9 +156,17 @@ def listaATurbineSpeciali():
 #   Se non sono presenti turbine rotte, n_turbine_rotte deve essere pari a 0,
 #   se non sono presenti turbine sane, n_turbine_sane deve essere pari a 0.
 def statisticheTurbineSpeciali(rot):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    liTuSp = listaATurbineSpeciali()
+    rotte = 0
+    sane = 0
+    for id in liTuSp:
+        if rot[id] == "S":
+            rotte += 1
+        else:
+            sane += 1
+    return (rotte, sane)
 
-        
 
 # - La funzione seguente accetta come parametri in ingresso:
 #   la struttura dati restituita dalla funzione leggiRilevazioni()
@@ -146,7 +187,17 @@ def statisticheTurbineSpeciali(rot):
 #     Ad esempio, se nei confronti tra i rapporti ottenuti dalle rilevazioni, per 6 volte la rilevazione
 #     di un'ora restituisce un valore maggiore rispetto all'ora precedente, indiceA varrà 6.
 def calcolaIndiceA(rilev):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    diz = {}
+    for key in rilev:
+        (li_flow, li_rpm, li_hz) = rilev[key]
+        indice = 0
+        temp = 1
+        if (float(li_hz[temp])/float(li_flow[temp])) > (float(li_hz[temp-1])/float(li_flow[temp-1])):
+            indice += 1
+        temp += 1
+        diz[key] = indice
+    return diz
 
 
 ##########################################################
@@ -156,13 +207,12 @@ def calcolaIndiceA(rilev):
 # (a vostra scelta), se lo modificate, accertatevi
 # che il codice non dia errori in esecuzione.
 ##########################################################
-
 print('Esercizio %s.' % (nomeEsercizio))
 
 print('Ciao %s, %s .' % (nome, cognome))
 
 print("1) Eseguo la funzione leggiRotture: ")
-fname='turbine.csv'
+fname = 'Documents/Esame uni/2017-18/2018_09_20/tracciaTurbine/turbine.csv'
 rotture = leggiRotture(fname)
 print(rotture)
 
@@ -183,5 +233,4 @@ isa = calcolaIndiceA(rilevazioni)
 print(isa)
 
 print('Nome dello script eseguito')
-print(__file__) # Questa istruzione stampa il nome dello script, ignoratela.
-
+print(__file__)  # Questa istruzione stampa il nome dello script, ignoratela.
