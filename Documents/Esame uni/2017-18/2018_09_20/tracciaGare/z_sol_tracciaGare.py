@@ -18,12 +18,12 @@ nomeEsercizio = 'GareNuoto'
 #   non considerate il simbolo di #
 #
 #       400 stile libero  femminile  -  Categoria  Under 25
-#----------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------
 #       1   BAIGUERA  MARTA ISIDE          1994   Verolanuoto                 4'49"74  0,00
 #       2   FERRARI  ALICE                 1997   Coopernuoto                 4'55"15  0,00
 #
 #        400 stile libero  femminile  -  Categoria  Master 25      Tempo Base :  4'23"38
-#----------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------
 #       1   GUARESCHI  MARTINA             1990   Coopernuoto                 4'33"59  962,68
 #       2   FE`  ELEONORA                  1989   Prosport Acqua ssd          4'52"72  899,77
 #       3   PASTORE  GIULIA                1991   Effetto Sport - Barzano`    4'56"77  887,49
@@ -33,7 +33,7 @@ nomeEsercizio = 'GareNuoto'
 #       7   RICCARDI  FIORELLA             1989   Amici Nuoto Firenze         5'39"61  775,54
 #
 #        400 stile libero  femminile  -  Categoria  Master 30      Tempo Base :  4'22"11
-#----------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------
 #       1   LUGANO  DILETTA                1984   Derthona Nuoto              4'51"39  899,52
 #       2   TAINI  RAFFAELLA               1984   Nuoto Master Brescia asd    5'05"49  858,00
 #       3   COGO  MARTINA GAIA             1985   Effetto Sport - Barzano`    5'08"50  849,63
@@ -56,7 +56,7 @@ nomeEsercizio = 'GareNuoto'
 #   contiene queste informazioni:
 #   * Posizione di arrivo nella gara   1
 #   * Cognome e nome   GUARESCHI  MARTINA
-#   * Anno di nascita   1990 
+#   * Anno di nascita   1990
 #   * Squadra di cui il partecipante fa parte   Coopernuoto
 #   * Tempo impiegato per completare la gara   4'33"59 (4 minuti, 33 secondi, 59 centesimi)
 #   * Punteggio ottenuto   962,68
@@ -83,8 +83,8 @@ nomeEsercizio = 'GareNuoto'
 # INIZIO DELLA PARTE DA EDITARE
 ##########################################################
 
-cognome='Sostituiscimi con il cognome' # inserisci qua il tuo cognome
-nome='Sostituiscimi con il nome' # inserisci qua il tuo nome
+cognome = 'Sostituiscimi con il cognome'  # inserisci qua il tuo cognome
+nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 
 
 # - La funzione seguente accetta come unico parametro in
@@ -96,10 +96,11 @@ nome='Sostituiscimi con il nome' # inserisci qua il tuo nome
 #   Per esempio 1'01"24 deve essere convertito in
 #   24 + 1*100 + 1*60*100 = 6124
 #   Se la persona e' stata squalificata, deve essere restituito -1
-def tStr2tCC(string): 
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+def tStr2tCC(string):
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
     if 'Squalif.' not in string:
-        frags = string.split('\"') # Il \ non servirebbe
+        frags = string.split('\"')  # Il \ non servirebbe
         # print(frags)
         cc = int(frags[1])
         frags = frags[0].split("\'")
@@ -117,15 +118,16 @@ def tStr2tCC(string):
 #       1   GUARESCHI  MARTINA             1990   Coopernuoto                 4'33"59  962,68
 #   la funzione deve restiture un dizionario, come nell'esempio seguente:
 #         {'ordArrivo': 1,
-#          'atleta': ' GUARESCHI  MARTINA', 
+#          'atleta': ' GUARESCHI  MARTINA',
 #          'nascita': 1990,    # questo valore deve essere di tipo intero intero
 #          'squadra': 'Coopernuoto',
 #          'tempoCC': 27359,    # l'equivalente in centesimi di 4'33"59
 #          'punti': 962.68  # questo valore deve essere di tipo float
 #         }
-#   
+#
 def dizPrestazione(string):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
     piazzamento = string[:10].strip()
     NomeCognome = string[10:42].strip()
     annoNascita = int(string[42:48].strip())
@@ -154,12 +156,12 @@ def dizPrestazione(string):
 #   Per esempio, se il file contenesse le seguenti righe
 #
 #       400 stile libero  femminile  -  Categoria  Under 25
-#----------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------
 #       1   BAIGUERA  MARTA ISIDE          1994   Verolanuoto                 4'49"74  0,00
 #       2   FERRARI  ALICE                 1997   Coopernuoto                 4'55"15  0,00
 #
 #        400 stile libero  femminile  -  Categoria  Master 25      Tempo Base :  4'23"38
-#----------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------
 #       1   GUARESCHI  MARTINA             1990   Coopernuoto                 4'33"59  962,68
 #       2   FE`  ELEONORA                  1989   Prosport Acqua ssd          4'52"72  899,77
 #
@@ -170,21 +172,22 @@ def dizPrestazione(string):
 #    '400 stile libero  femminile  -  Categoria  Master 25':26338   # 26338 e' l'equivalente in centesimi di 4'23"38
 #   }
 #
-def leggiGare(fn): 
-    pass # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    f=open(fn,'r')
-    di={}
+def leggiGare(fn):
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
+    f = open(fn, 'r')
+    di = {}
     for line in f:
-        line=line.strip('\n')
+        line = line.strip('\n')
         if 'Categoria' in line:
             if 'Tempo Base :' in line:
                 frags = line.split('Tempo Base :')
-                tempoBase =  tStr2tCC(frags[1].strip()) 
+                tempoBase = tStr2tCC(frags[1].strip())
                 strGara = frags[0].strip()
             else:
                 tempoBase = ''
                 strGara = line.strip()
-            di[strGara]=tempoBase
+            di[strGara] = tempoBase
     # print(tempoBase)
     return di
     f.close()
@@ -199,27 +202,30 @@ def leggiGare(fn):
 #      'nome_squadra2':{'nAtleti':14, 'punti':8470.69 },
 #       ...
 #    }
-#   dove le chiavi sono i nomi delle squadre e ad ogni nome di squadra e' a sua 
+#   dove le chiavi sono i nomi delle squadre e ad ogni nome di squadra e' a sua
 #   volta associato un dizionario con le seguenti informazioni:
 #   * 'nAtleti' il n. di volte che gli atleti della squadra sono presenti
 #      nei piazzamenti contenuti all'interno del file. Se uno stesso atleta si
 #      e' piazzato in piu' gare, questi piazzamenti vanno contati tutti.
 #   * 'punti' il totale dei punti conseguiti dalla squadra
 #
+
+
 def leggiRisultati(fn):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    f=open(fn,'r')
-    di={}
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
+    f = open(fn, 'r')
+    di = {}
     for line in f:
-        line=line.strip('\n')
-        if not ('Categoria' in line or '-----' in line or line==''):
+        line = line.strip('\n')
+        if not ('Categoria' in line or '-----' in line or line == ''):
             dp = dizPrestazione(line)
             sq = dp['squadra']
             pt = dp['punti']
             if sq not in di:
-                di[sq]={'nAtleti':0, 'punti':0.0 }
-            di[sq]['punti']+=pt
-            di[sq]['nAtleti']+=1
+                di[sq] = {'nAtleti': 0, 'punti': 0.0}
+            di[sq]['punti'] += pt
+            di[sq]['nAtleti'] += 1
     # print(tempoBase)
     return di
     f.close()
@@ -239,12 +245,14 @@ def leggiRisultati(fn):
 #   Il valore associato a 'muPuntiPrest' e', per ogni squadra, il rapporto tra il valore
 #   associato alla chiave 'punti' e il valore associato alla chiave 'nAtleti'
 def aggiungiMedia(dizSquadre):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
     for squadra in dizSquadre:
         # print(squadra)
-        dizSquadre[squadra]['muPuntiPrest'] = dizSquadre[squadra]['punti'] / dizSquadre[squadra]['nAtleti']
+        dizSquadre[squadra]['muPuntiPrest'] = dizSquadre[squadra]['punti'] / \
+            dizSquadre[squadra]['nAtleti']
     return dizSquadre
-    
+
 
 # - La funzione seguente accetta come parametri in ingresso:
 #   la struttura dati restituita dalla funzione aggiungiMedia()
@@ -254,14 +262,15 @@ def aggiungiMedia(dizSquadre):
 #   Se piu' squadre raggiungono lo stesso punteggio massimo,
 #   sceglietene una sola come meglio preferite.
 def squadraMediaMax(dizSquadre):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
     max = 0.0
     for squadra in dizSquadre:
         if dizSquadre[squadra]['muPuntiPrest'] > max:
             nome = squadra
             max = dizSquadre[squadra]['muPuntiPrest']
     return (nome, max)
-    
+
 
 ##########################################################
 # Fine del compito e della parte da editare obbligatoriamente
@@ -276,16 +285,16 @@ print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao %s, %s .' % (nome, cognome))
 
 print("1) Eseguo la funzione tStr2tCC: ")
-te='''4'33"59'''
+te = '''4'33"59'''
 dp = tStr2tCC(te)
 print(te)
 
 print("2) Eseguo la funzione dizPrestazione: ")
-st='''       1   GUARESCHI  MARTINA             1990   Coopernuoto                 4'33"59  962,68'''
+st = '''       1   GUARESCHI  MARTINA             1990   Coopernuoto                 4'33"59  962,68'''
 dp = dizPrestazione(st)
 print(dp)
 
-fname='A28A2018.txt'
+fname = 'Documents/Esame uni/2017-18/2018_09_20/tracciaGare/A28A2018.txt'
 print('3) Eseguo la funzione leggiGare: ')
 gare = leggiGare(fname)
 print(gare)
@@ -303,6 +312,4 @@ sMeMax = squadraMediaMax(ris2)
 print(sMeMax)
 
 print('Nome dello script eseguito')
-print(__file__) # Questa istruzione stampa il nome dello script, ignoratela.
-
-
+print(__file__)  # Questa istruzione stampa il nome dello script, ignoratela.
