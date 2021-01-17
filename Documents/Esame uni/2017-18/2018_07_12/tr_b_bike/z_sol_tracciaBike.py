@@ -24,7 +24,7 @@ nomeEsercizio = 'Bici02'
 #   dalle biciclette durante l'erogazione del servizio.
 #   Un esempio del contenuto del file e' il seguente. Nell'esempio
 #   non considerate il simbolo di # e gli spazi.
-#   
+#
 #       ID_Noleggio;ID_Bici;ID_Utente;Data;MetriPercorsi;TempoImpiegato(secondi)\r\n
 #       0;39;69;26/04/2010;450;45\r\n
 #       1;41;93;26/02/2010;4550;455\r\n
@@ -34,7 +34,7 @@ nomeEsercizio = 'Bici02'
 #
 #   La prima riga contiene l'intestazione delle colonne.
 #   In tute le righe le informazioni sono separati da ; (punto e virgola) e
-#   i \r\n rappresentano i caratteri di a capo. Seguono alcune precisazioni 
+#   i \r\n rappresentano i caratteri di a capo. Seguono alcune precisazioni
 #   sulle informazioni contenute nel file.
 #   Ogni riga del file contiene informazioni su un noleggio effettuato.
 #   Le informazioni sono:
@@ -71,7 +71,7 @@ nomeEsercizio = 'Bici02'
 #     sono gli identificatori che individuano la tipologia di danno, la seconda meta'
 #     sono i corrispondenti costi di riparazione.
 #
-#      
+#
 ##########################################################
 # DESCRIZIONE DEL LAVORO DA SVOLGERE
 ##########################################################
@@ -90,14 +90,14 @@ nomeEsercizio = 'Bici02'
 # INIZIO DELLA PARTE DA EDITARE
 ##########################################################
 
-cognome='Sostituiscimi con il cognome' # inserisci qua il tuo cognome
-nome='Sostituiscimi con il nome' # inserisci qua il tuo nome
+cognome = 'Sostituiscimi con il cognome'  # inserisci qua il tuo cognome
+nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 
 
 # - La funzione seguente accetta come unico parametro in
 #   ingresso il nome del file con le informazioni sui tragitti percorsi dagli utenti.
 #   La funzione deve restituire una struttura dati come nell'esempio seguente.
-#       [ (ID_Noleggio, ID_Bici, ID_Utente, data, metri_percorsi, tempo_impiegato), 
+#       [ (ID_Noleggio, ID_Bici, ID_Utente, data, metri_percorsi, tempo_impiegato),
 #               ...
 #       ]
 #
@@ -113,19 +113,20 @@ nome='Sostituiscimi con il nome' # inserisci qua il tuo nome
 #          (2, 23, 73, '11/04/2010', 1250, 156)
 #        ]
 def caricaSpostamenti(fname):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    f=open(fname,'r')
-    li=[]
-    f.readline() # salto l'intestazione
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
+    f = open(fname, 'r')
+    li = []
+    f.readline()  # salto l'intestazione
     for line in f:
-        line=line.strip('\r\n').split(';')
-        idnoleggio=int(line[0])
-        idbici=int(line[1])
-        idutente=int(line[2])
-        data=line[3]
-        metri=int(line[4])
-        tempo=int(line[5])
-        li.append( (idnoleggio, idbici, idutente, data, metri, tempo) )
+        line = line.strip('\r\n').split(';')
+        idnoleggio = int(line[0])
+        idbici = int(line[1])
+        idutente = int(line[2])
+        data = line[3]
+        metri = int(line[4])
+        tempo = int(line[5])
+        li.append((idnoleggio, idbici, idutente, data, metri, tempo))
     return li
 
 
@@ -139,7 +140,7 @@ def caricaSpostamenti(fname):
 #          ...,
 #          id_biciN:(modello_biciN, totale_costi_riparazione_biciN)
 #         }
-#   
+#
 #   Dove totale_costi_riparazione_bici... e' il totale della somma spesa
 #   per le riparazioni di una singola bicicletta.
 #   Per maggiori informazioni sui dati si faccia riferimento
@@ -147,39 +148,41 @@ def caricaSpostamenti(fname):
 #
 #   Vi suggeriamo di implementare anche una funzione accessoria
 #   che riceva come parametro in ingresso la stringa (oppure una lista di elementi)
-#   corrispondenti ad una riga del file. La funzione accessoria dovrebbe 
+#   corrispondenti ad una riga del file. La funzione accessoria dovrebbe
 #   calcolare il totale dei costi di riparazione presenti in una riga.
 #   Esempio di funzione accessoria: # se volete potete togliere i commenti qua sotto
 #
-#def calcolaTotaleCosti(...):
-#    pass     
+# def calcolaTotaleCosti(...):
+#    pass
 
 # ****** Da rimuovere dal testo del compito
 def calcolaTotaleCosti(li):
-    posDanni=2
-    posCosti=( len(li)- posDanni )/2 + posDanni
-    i=0
-    sommaCosti=0
-    while i+posDanni<posCosti:
-        tipoDanno=li[posDanni+i]
+    posDanni = 2
+    posCosti = (len(li) - posDanni)//2 + posDanni
+    i = 0
+    sommaCosti = 0
+    while i+posDanni < posCosti:
+        tipoDanno = li[posDanni+i]
         sommaCosti += int(li[posCosti+i])
-        i+=1
+        i += 1
     return sommaCosti
 # l'intestazione seguente deve invece rimanere nel testo del compito
 
+
 def caricaDatiBici(filename):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    diz={}
-    f=open(filename,'r')
-    diz={}
-    
-    f.readline() # salto l'intestazione
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
+    diz = {}
+    f = open(filename, 'r')
+    diz = {}
+
+    f.readline()  # salto l'intestazione
     for line in f:
-        line=line.strip('\r\n').split(';')
-        idbici=int(line[0])
-        modello=line[1]
-        sommaCosti=calcolaTotaleCosti(line)
-        diz[idbici]=(modello, sommaCosti)
+        line = line.strip('\r\n').split(';')
+        idbici = int(line[0])
+        modello = line[1]
+        sommaCosti = calcolaTotaleCosti(line)
+        diz[idbici] = (modello, sommaCosti)
     return diz
 
 
@@ -188,8 +191,8 @@ def caricaDatiBici(filename):
 #   NOTA BENE: questa funzione e' GIA' IMPLEMENTATA,
 #   NON DOVETE MODIFICARLA, dovete SOLO USARLA negli
 #   esercizi seguenti.
-def tariffazione(metri, secondi): # NB: nel testo originale il parametro secondi era stato erroneamente chiamato minuti. Nella correzione sono state considerate valide entrambe le possibilita' (valore passato in minuti, valore passato in secondi)
-    imp=metri/1000.0*0.20 + secondi/60.0*0.10
+def tariffazione(metri, secondi):  # NB: nel testo originale il parametro secondi era stato erroneamente chiamato minuti. Nella correzione sono state considerate valide entrambe le possibilita' (valore passato in minuti, valore passato in secondi)
+    imp = metri/1000.0*0.20 + secondi/60.0*0.10
     if imp < 0.5:
         return 0.0
     else:
@@ -200,21 +203,24 @@ def tariffazione(metri, secondi): # NB: nel testo originale il parametro secondi
 #   La funzione deve restituire una struttura dati come la seguente:
 #       { id_bicicletta1:totale_noleggi1,  id_bicicletta2:totale_noleggi2, ...}
 #   dove per esempio totale_noleggi1 e' il totale dei soldi che la bicicletta1
-#    ha fatto guadagnare con i noleggi.   
+#    ha fatto guadagnare con i noleggi.
+
+
 def calcolaAddebiti(spost):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    diz={}
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
+    diz = {}
     for el in spost:
-        idbici=el[1]
-        metri=el[4]
-        secondi=el[5]
-        costo=tariffazione(metri, secondi)
+        idbici = el[1]
+        metri = el[4]
+        secondi = el[5]
+        costo = tariffazione(metri, secondi)
         if idbici in diz:
-            diz[idbici]+=costo
+            diz[idbici] += costo
         else:
-            diz[idbici]=costo
+            diz[idbici] = costo
     return diz
-    
+
 
 # - La funzione seguente accetta come parametri in ingresso:
 #   * spost: la struttura dati restituita dalla funzione caricaSpostamenti()
@@ -229,33 +235,34 @@ def calcolaAddebiti(spost):
 #               non sulle singole biciclette.
 #   Nota bene2: nel dato fornito, tutte le biciclette hanno avuto una spesa per danni.
 def rapportoRedditivita(spost, danni):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-    noleggi = calcolaAddebiti(spost) # { id_bicicletta1:totale_noleggi1, ...}
-    
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
+    noleggi = calcolaAddebiti(spost)  # { id_bicicletta1:totale_noleggi1, ...}
+
     # danni  id_bici1:(modello_bici1, totale_costi_riparazione_bici1),
 
-    diznum={}
-    dizden={}
+    diznum = {}
+    dizden = {}
 
     for idbici in noleggi:
         importo = noleggi[idbici]
         mod = danni[idbici][0]
 
         if mod in diznum:
-            diznum[mod]+=importo
+            diznum[mod] += importo
         else:
-            diznum[mod]=importo
-    
+            diznum[mod] = importo
+
     for idbici in danni:
         mod = danni[idbici][0]
         ripar = danni[idbici][1]
-        
-        if mod in dizden:
-            dizden[mod]+=ripar
-        else:
-            dizden[mod]=ripar
 
-    diz={}
+        if mod in dizden:
+            dizden[mod] += ripar
+        else:
+            dizden[mod] = ripar
+
+    diz = {}
     for idbici in diznum:
         diz[idbici] = diznum[idbici] / float(dizden[idbici])
 
@@ -275,17 +282,17 @@ print('Esercizio %s.' % (nomeEsercizio))
 print('Ciao %s, %s .' % (nome, cognome))
 
 print("1) Eseguo la funzione caricaSpostamenti: ")
-fname1='spostamenti.csv'
+fname1 = 'Documents/Esame uni/2017-18/2018_07_12/tr_b_bike/spostamenti.csv'
 spost = caricaSpostamenti(fname1)
 print(spost)
 
 print('2) Eseguo la funzione caricaDatiBici: ')
-fname2='danni.csv'
+fname2 = 'Documents/Esame uni/2017-18/2018_07_12/tr_b_bike/danni.csv'
 danni = caricaDatiBici(fname2)
 print(danni)
 
 print('Eseguo la funzione tariffazione: ')
-tar = tariffazione(3000,25)
+tar = tariffazione(3000, 25)
 print(tar)
 
 print('3) Eseguo la funzione calcolaAddebiti: ')
@@ -297,11 +304,8 @@ rap = rapportoRedditivita(spost, danni)
 print(rap)
 
 
-
-
-
 print('Nome dello script eseguito')
-print(__file__) # Questa istruzione stampa il nome dello script, ignoratela.
+print(__file__)  # Questa istruzione stampa il nome dello script, ignoratela.
 
 '''
 
