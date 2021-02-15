@@ -64,7 +64,7 @@ nomeEsercizio = 'Review01'
 #   solo 2 "aspetti", Atmosfera e Parcheggio con voti rispettivamente pari a 4.5 e 0.5.
 #   Ogni valutazione puo' contenere un numero variabile di voti, ognuno dato ad un
 #   "aspetto" diverso. Per esempio nella riga successiva (ID_Valutazione pari a 1) e'
-#   stato valutato solamente il "Parcheggio". 
+#   stato valutato solamente il "Parcheggio".
 #   Gli "aspetti" valutabili sono: 'Parcheggio,AccessoDisabili,Atmosfera,Cibo,Costi'.
 #   In ogni riga sono prima elencati gli "aspetti" valutati e poi i voti corrispondenti.
 #   Ogni riga può contenere da 1 a 5 voti diversi.
@@ -87,9 +87,8 @@ nomeEsercizio = 'Review01'
 # INIZIO DELLA PARTE DA EDITARE
 ##########################################################
 
-cognome='Sostituiscimi con il cognome' # inserisci qua il tuo cognome
-nome='Sostituiscimi con il nome' # inserisci qua il tuo nome
-
+cognome = 'Sostituiscimi con il cognome'  # inserisci qua il tuo cognome
+nome = 'Sostituiscimi con il nome'  # inserisci qua il tuo nome
 
 
 # - La funzione seguente accetta come unico parametro in
@@ -100,22 +99,35 @@ nome='Sostituiscimi con il nome' # inserisci qua il tuo nome
 #          id_fast_food:[NomeFastFood, Citta, MetriQuadrati]
 #          ...
 #         }
-#   
+#
 #   Per maggiori informazioni sui dati coinvolti si faccia riferimento
 #   alla descrizione del file contenente i dati.
 #   Nell'esempio qua sopra id_fast_food e MetriQuadrati devono essere valori interi
 def leggiFastFood(filename):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    file = open(filename, 'r')
+    file.readline()
+    diz = {}
+    for line in file:
+        line = line.strip('\n').strip('\r')
+        content = line.split(';')
+        id_fastFood = content[0]
+        nomeFastFood = content[1]
+        citta = content[2]
+        metriQuadri = int(content[3])
+        if id_fastFood not in diz:
+            diz[id_fastFood] = [nomeFastFood, citta, metriQuadri]
+
+    return diz
 
 
-
-# - La funzione seguente restituisce una lista contenente 
+# - La funzione seguente restituisce una lista contenente
 #   l'elenco degli aspetti valutati dagli utenti.
 #   NOTA BENE: questa funzione e' GIA' IMPLEMENTATA,
 #   NON DOVETE MODIFICARLA, dovete SOLO USARLA negli
 #   esercizi seguenti.
 def listaAspetti():
-    return ['Parcheggio','AccessoDisabili','Atmosfera','Cibo','Costi']
+    return ['Parcheggio', 'AccessoDisabili', 'Atmosfera', 'Cibo', 'Costi']
 
 
 # - La funzione seguente accetta come unico parametro in
@@ -138,9 +150,17 @@ def listaAspetti():
 #   valori i voti corrispondenti attribuiti dall'utente.
 #   L'elenco dei possibili aspetti valutati e' quello restituito dalla funzione listaAspetti().
 def leggiValutazioni(fname):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    file = open(fname, 'r')
+    file.readline()
+    li = []
 
-
+    for line in file:
+        line = line.strip('\n').strip('\r')
+        content = line.split(';')
+        idValutazione = content[0]
+        idFastFood = content[1]
+        idUtente = content[2]
 
 
 # - La funzione seguente accetta come parametri in ingresso
@@ -158,8 +178,8 @@ def leggiValutazioni(fname):
 #   Se un fast food non riceve mai valutazioni sullo specifico aspetto,
 #   allora non deve essere presente nella struttura dati restituita.
 def valutazioneMediaAspetto(valutaz, aspetto):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
 
 
 # - La funzione seguente accetta come parametri in ingresso:
@@ -171,7 +191,7 @@ def valutazioneMediaAspetto(valutaz, aspetto):
 #         ...}
 #   Dove ogni chiave del dizionario restituita e' un id_fast_food,
 #   ad ogni id_fast_food e' associata una lista con dentro le medie dei giudizi
-#   dati dagli utenti ai diversi aspetti oggetto di valutazione. 
+#   dati dagli utenti ai diversi aspetti oggetto di valutazione.
 #   L'ordine dei valori nelle liste deve essere quello dell'esempio qua sopra,
 #   ed e' lo stesso con cui gli "aspetti" sono elencati nella lista restituita
 #   dalla funzione listaAspetti().
@@ -182,9 +202,8 @@ def valutazioneMediaAspetto(valutaz, aspetto):
 #   Nel dizionario restituito, devono essere presenti solo i fast food
 #   i cui ID sono stati passati nel parametro in ingresso listaID_FastFood.
 def generaRapporto(valutaz, listaID_FastFood):
-    pass  # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
-
-
+    # Implementa il codice della funzione qua sotto. Questa riga puo' essere cancellata.
+    pass
 
 
 ##########################################################
@@ -194,19 +213,17 @@ def generaRapporto(valutaz, listaID_FastFood):
 # (a vostra scelta), se lo modificate, accertatevi
 # che il codice non dia errori in esecuzione.
 ##########################################################
-
-
 print('Esercizio %s.' % (nomeEsercizio))
 
 print('Ciao %s, %s .' % (nome, cognome))
 
 print("1) Eseguo la funzione leggiFastFood: ")
-fname1='fastfood.csv'
+fname1 = 'Documents/Esame uni/2017-18/2018_07_12/tr_a_ffood/fastfood.csv'
 ffood = leggiFastFood(fname1)
 print(ffood)
 
 print('2) Eseguo la funzione leggiValutazioni: ')
-fname2='valutazioni.csv'
+fname2 = 'Documents/Esame uni/2017-18/2018_07_12/tr_a_ffood/valutazioni.csv'
 valut = leggiValutazioni(fname2)
 print(valut)
 
@@ -219,9 +236,9 @@ ris = listaAspetti()
 print(ris)
 
 print('4) Eseguo la funzione generaRapporto: ')
-ffli=[0, 5, 6,8,12]
+ffli = [0, 5, 6, 8, 12]
 rap = generaRapporto(valut, ffli)
 print(rap)
 
 print('Nome dello script eseguito')
-print(__file__) # Questa istruzione stampa il nome dello script, ignoratela.
+print(__file__)  # Questa istruzione stampa il nome dello script, ignoratela.

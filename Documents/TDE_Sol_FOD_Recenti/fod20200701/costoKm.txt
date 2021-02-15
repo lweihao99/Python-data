@@ -1,0 +1,9 @@
+#http://www.autostrade.it/it/il-pedaggio/come-si-calcola-il-pedaggio#tariffe
+#TARIFFE UNITARIE DI AUTOSTRADE PER L'ITALIA €/KM (ANNO 2017)
+#ClasseVeicolo,euro/km
+A,0.07135
+B,0.07302
+3,0.09749
+4,0.14677
+5,0.17302
+
