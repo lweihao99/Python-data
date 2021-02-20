@@ -46,13 +46,12 @@
 #   Il file contiene le informazioni dettagliate per la classificazione ISTAT dei comuni d'italia.
 
 
-
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
-fileComuni = 'Elenco-comuni-italiani.csv'
-fileVeicoli = 'ParcoVeicoliCircolantiLombardia2018.csv'
+fileComuni = 'Documents/TDE_Sol_FOD_Recenti/fod20200131/Elenco-comuni-italiani.csv'
+fileVeicoli = 'Documents/TDE_Sol_FOD_Recenti/fod20200131/ParcoVeicoliCircolantiLombardia2018.csv'
 
 # 1. Caricare il contenuto del file Elenco-comuni-italiani.csv nel
 # dataframe dfComuni, assicurandosi che la colonna 'Codice_Comune_formato_alfanumerico'
@@ -77,31 +76,40 @@ dfVeicoli['Codice_Comune_formato_alfanumerico'] = \
 
 # 4.Fondere il contenuto dei due dataframe utilizzando i valori contenuti nella
 # colonna Codice_Comune_formato_alfanumerico
+# merge是用来融合数据的方法,
+# 属性: on = 指定数据对齐合并的列,
+#       how = 数据融合的方法 不指定的话默认使用inner也就是保留2个数据中一样的部分,outer保留所有信息,
+#       right left分别保留右边 和 左边表的对应信息
+
 dfMerged = pd.merge(dfVeicoli, dfComuni,
                     on='Codice_Comune_formato_alfanumerico',
-                    how='inner')
+                    how='inner')  # 这里就是要对齐dfVeicoli 以及 dfComuni,里的对应列Codice_comuni_formato_alfanumeri,并且取其共有的数据进行合并(inner)
 print(dfMerged)
-print(dfMerged.columns)
+print(dfMerged.columns)  # 打印列表
 
 # 5. Costruire il dataframe dfMergedMi contenente solo le osservazioni la cui
 # denominazione è Milano
 dfMergedMi = dfMerged[dfMerged.Denominazione_in_italiano == 'Milano']
-print(dfMergedMi.shape)
+print("______", dfMergedMi.shape)  # shape 只打印(行数,列数)
 
 # 6.Costruire il dataframe dfMiEuro che contenga le osservazioni del dataframe
 # dfMergedMi contente il conteggio delle osservazioni stratificate per
 # 'COD_SIGLA_EURO'
 
-dfMiEuro = dfMergedMi.groupby(by='COD_SIGLA_EURO').count()
-print(dfMiEuro.PROG)
+dfMiEuro = dfMergedMi.groupby(
+    by='COD_SIGLA_EURO').count()  # 以COD_SIGLA_EURO进行分组,并计数
+print("=====", dfMiEuro.PROG)  # 这里取dfMiEuro 里的 prog列
 
 
 # 7.Riprodurre il seguente grafico e salvarlo in un file di tipo pdf
 y = range(len(dfMiEuro.PROG))
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.barh(y, dfMiEuro.PROG, label='sigla euro', color='#377EB8')
-ax.set_yticklabels(dfMiEuro.index)
-ax.set_yticks(y)
+fig = plt.figure()  # 设置图片大小,可以通过figsize设置大小,以及dpi
+ax = fig.add_subplot(111)  # 同subplot用来设置子图,比如subplot(2,2,1)将话不分为两行两列,并对1话不进行绘制
+ax.barh(y, dfMiEuro.PROG, label='sigla euro',
+        color='#377EB8')  # 同bar用来绘制柱状图,barh是用来绘制横向条形图,所以x对应Y,y对应x
+
+ax.set_yticklabels(dfMiEuro.index)  # y轴信息
+ax.set_yticks(y)  # y轴刻度
 ax.set_title('Distribuzione su classe Euro')
-plt.savefig('distribEuroMI.png')
+# plt.savefig('distribEuroMI.png') # 对图片进行保存
+plt.show()
